@@ -1,0 +1,35 @@
+/* ==========================================================================
+   ПЕРЕМЕННЫЕ
+   ========================================================================== */
+
+/* Цветовая палитра */
+$color-primary: #1565c0;
+$color-primary-dark: #0d47a1;
+$color-accent-red: #db1414;
+$color-hit: #e63946;
+$color-text-main: #333;
+$color-text-light: #a9a9a9;
+$color-white: #fff;
+$color-black: #000;
+$color-black-light: #222;
+$color-grey-dark: #444;
+$color-background: #f0f0f0;
+$color-border: #ddd;
+
+/* Типографика */
+$font-family-main: Arial, sans-serif;
+$font-size-base: 1.6rem; // Базовый размер шрифта (соответствует 16px при html { font-size: 62.5% })
+
+/* Отступы */
+$spacing-xs: 0.5rem;
+$spacing-s: 1rem;
+$spacing-m: 1.5rem;
+$spacing-l: 2rem;
+$spacing-xl: 4rem;
+
+/* Прочее */
+$border-radius-small: 4px;
+$border-radius-main: 10px;
+$transition-speed: 0.3s;
+$shadow-main: 0 2px 5px rgba(0, 0, 0, 0.2);
+$shadow-large: 0 6px 16px rgba(0, 0, 0, 0.15);

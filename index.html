@@ -1,0 +1,750 @@
+<!DOCTYPE html>  <!-- Объявление типа документа для HTML5 -->
+<html lang="ru">  <!-- Язык страницы -->
+<head>
+    <meta charset="UTF-8">  <!-- Кодировка -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  <!-- Для отзывчивости -->
+    <title>Оператор связи «РЕАЛ» — Интернет в Астрахани</title>  <!-- Указанный title -->
+    <meta name="description" content="Подключение к интернету в Астрахани. Выгодные тарифы для домашнего интернета и ТВ. Проводим интернет в частный дом.">  <!-- Указанное description -->
+    <meta name="keywords" content="подключить интернет, интернет в квартиру, интернет домой, домашний интернет, тарифные планы на интернет, узнать цены на интернет, беспроводной интернет домой, интернет астрахань, интернет в астрахани">  <!-- Указанные keywords -->
+    <meta property="og:title" content="Оператор связи «РЕАЛ»">  <!-- OpenGraph на выбор -->
+    <meta property="og:description" content="Интернет и ТВ в Астрахани">  <!-- OpenGraph -->
+    <meta property="og:image" content="https://example.com/assets/images/fav.png">  <!-- OpenGraph изображение -->
+    <link rel="icon" href="./assets/images/fav.svg" type="image/svg+xml">  <!-- Favicon -->
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">  <!-- Swiper CSS via CDN -->
+    <link rel="stylesheet" href="./src/styles/main.css" >
+</head>
+
+<body>
+
+    <!-- Подключение SVG спрайта. Он будет невидим, но доступен для <use> -->
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+        <!-- Иконка поиска -->
+        <symbol id="icon-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </symbol>
+        <!-- Иконка VK -->
+        <symbol id="icon-vk" viewBox="0 0 18 11">
+            <path d="M17.9998 0.500001C17.9998 0.6 17.9998 0.7 17.9998 0.8C17.7998 1.8 15.9998 4.5 15.3998 5.3C15.2998 5.4 15.1998 5.4 15.1998 5.4C15.0998 5.9 14.9998 6.1 14.9998 6.2C14.9998 6.3 14.9998 6.5 15.1998 6.7C15.3998 7 15.8998 7.6 16.2998 8.1C17.0998 9.1 17.7998 10.2 17.8998 10.6C17.8998 10.7 17.8998 10.8 17.8998 10.9C17.8998 11.3 17.5998 11.5 17.1998 11.5H15.1998C14.6998 11.5 14.3998 11.1 13.8998 10.4C13.6998 10.1 13.3998 9.7 12.9998 9.2C11.8998 7.9 11.2998 7.7 10.9998 7.7C10.5998 7.7 10.4998 7.8 10.4998 8.4V10.6C10.4998 11.1 10.3998 11.4 8.9998 11.4C6.8998 11.4 4.5998 10 2.7998 7.6C2.3998 7.1 1.9998 4.2 1.9998 3.7C1.9998 3.4 2.0998 3.1 2.6998 3.1H4.6998C5.1998 3.1 5.3998 3.3 5.5998 3.9C6.3998 6.9 7.6998 9.1 8.3998 9.1C8.5998 9.1 8.7998 9 8.79C8.7998 8.3 8.7998 5.6 8.7998 4.2C8.7998 3.3 8.4998 3 8.2998 2.7C8.0998 2.5 7.9998 2.4 7.9998 2.2C7.9998 1.9 8.1998 1.7 8.4998 1.7H11.9998C12.3998 1.7 12.4998 1.9 12.4998 2.5V5.6C12.4998 6 12.7998 6.2 12.9998 6.2C12.9998 6.2 12.9998 6.2 12.9998 6.2C13.1998 6.2 13.4998 6.2 13.8998 5.7C15.2998 4 16.4998 1.5 16.4998 1.5C16.6998 1 16.8998 0.7 17.3998 0.7H17.8998C17.7998 0.7 17.9998 0.9 17.9998 0.500001Z" fill-rule="evenodd" clip-rule="evenodd"></path>
+        </symbol>
+        <!-- Иконка Telegram -->
+        <symbol id="icon-tg" viewBox="0 0 24 24">
+            <path d="M21.4451 3.11131C22.2551 2.81131 22.9651 3.53131 22.7251 4.34131L19.9351 15.4013C19.7251 16.1213 19.0651 16.5113 18.3451 16.2613L13.2051 14.4813L11.1651 16.4713C10.9151 16.7213 10.5851 16.8813 10.2351 16.8813L10.5951 11.8313L18.4951 4.57131C18.7851 4.31131 18.3951 4.18131 18.0251 4.41131L8.39513 10.5213L3.80513 9.04131C3.04513 8.79131 2.98513 7.82131 3.70513 7.50131L20.2551 1.16131C20.8451 0.931311 21.4451 3.11131 21.4451 3.11131Z"></path>
+        </symbol>
+        <!-- Иконка Одноклассники -->
+        <symbol id="icon-ok" viewBox="0 0 12 21">
+            <path d="M11.1 13.8C10.2 14.4 9.2 14.8 8.1 15.1L11.1 18.1C11.7 18.8 11.7 19.7 11.1 20.3C10.4 20.9 9.5 20.9 8.9 20.3L6 17.4L3 20.3C2.7 20.6 2.3 20.7 1.9 20.7C1.5 20.7 1.1 20.6 0.8 20.3C0.2 19.6 0.2 18.7 0.8 18.1L3.8 15.1C2.8 14.9 1.7 14.4 0.8 13.8C0.1 13.4 -0.2 12.4 0.2 11.7C0.6 11 1.6 10.7 2.3 11.1C4.4 12.4 7.3 12.4 9.4 11.1C10.1 10.7 11.1 10.9 11.5 11.6C11.9 12.4 11.8 13.4 11.1 13.8Z"></path>
+            <path d="M5.9 0C3 0 0.7 2.3 0.7 5.2C0.7 8.1 3 10.4 5.9 10.4C8.8 10.4 11.1 8.1 11.1 5.2C11.1 2.3 8.8 0 5.9 0ZM5.9 7.4C4.6 7.4 3.7 6.4 3.7 5.2C3.7 4 4.7 3 5.9 3C7.1 3 8.1 4 8.1 5.2C8.1 6.4 7.2 7.4 5.9 7.4Z"></path>
+        </symbol>
+        <!-- Иконка Спидометр -->
+        <symbol id="icon-speedometer" viewBox="0 0 24 24">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-2-8l-4-4 1.41-1.41L12 11.17l4.59-4.58L18 8l-6 6z"></path>
+        </symbol>
+        <!-- Иконка Шестеренка -->
+        <symbol id="icon-cogwheel" viewBox="0 0 24 24">
+            <path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17-.59-1.69.98l-2.49-1c-.22-.08-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"></path>
+        </symbol>
+        <!-- Иконка Роутер -->
+        <symbol id="icon-router" viewBox="0 0 24 24">
+            <path d="M20.54 5.54a.996.996 0 0 0-1.08-1.08l-3.2 3.2a.996.996 0 1 0 1.41 1.41l3.2-3.2zM12 3c-4.97 0-9 4.03-9 9H1c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2h20c1.1 0 2-.9 2-2v-2c0-1.1-.9-2-2-2h-2c0-4.97-4.03-9-9-9zm0 11c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm6.71-6.29a.996.996 0 1 0-1.41-1.41l-1.83 1.83a.996.996 0 1 0 1.41 1.41l1.83-1.83zM5.71 7.29a.996.996 0 1 0-1.41 1.41l1.83 1.83a.996.996 0 1 0 1.41-1.41L5.71 7.29z"></path>
+        </symbol>
+        <!-- Иконка Рубль -->
+        <symbol id="icon-ruble" viewBox="0 0 16 16">
+            <path d="M6.5 1.5A.5.5 0 0 1 7 1h1.5a2.5 2.5 0 0 1 0 5H7v1.5a.5.5 0 0 1-1 0V7H4v1h2v1H4v1h2v3.5a.5.5 0 0 1-1 0V1.5A.5.5 0 0 1 6.5 1.5z"/>
+        </symbol>
+    </svg>
+    <div class="top-bar">
+    
+        <div class="left-links">
+            <a href="https://b2b.real.su/" target="_blank" rel="noopener noreferrer">Для дома</a><span> | </span>
+            <a href="https://b2b.real.su/" target="_blank" rel="noopener noreferrer">Для офиса</a> <span> | </span>
+            <a href="https://b2b.real.su/" target="_blank" rel="noopener noreferrer">Магазин</a> 
+        </div>
+        
+        <div class="right-links">
+            <a href="https://b2b.real.su/" target="_blank" rel="noopener noreferrer">Личный кабинет</a> 
+        </div>
+        
+    </div>
+
+    <div class="header__container">
+        
+        <a href="#footer" class="header__logo">
+            <img src="./assets/svg/logo.svg" alt="Реал" class="header__logo-img" width="32" height="32" loading="eager" decoding="async">
+        </a>
+
+        <form class="header__search" role="search" action="/search" method="get">
+            <label for="site-search" class="sr-only">Поиск по сайту</label>
+            <div class="header__search-wrapper">
+            <input
+                    id="site-search"
+                    class="header__search-input"
+                    type="search"
+                    name="q"
+                    placeholder="Поиск"
+                    autocomplete="off">
+            <button class="header__search-btn" type="submit" aria-label="Найти">            
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-search"></use>
+                </svg>            
+            </button>
+            </div>
+        </form>
+        
+        <address class="header__contact">
+            <a href="tel:+78512666636" class="header__phone" >+7 (8512)  66-66-36</a>
+        </address>
+        
+    </div>
+    
+    <header class="header">
+    
+        <div class="burger-menu" id="burger-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        
+        <div class="header__menu-wrapper">
+            <ul class="header__nav-list" id="nav-list">
+                <li class="header__nav-item header__nav-item--submenu">
+                    <a href="#" class="header__nav-link">О компании<span class="dropdown-icon"></span></a>
+                    <ul class="header__submenu">
+                        <li><a href="https://b2b.real.su/" target="_blank" rel="noopener noreferrer">Новости</a></li>
+                        <li><a href="https://b2b.real.su/" target="_blank" rel="noopener noreferrer">Благодарственные письма</a></li>
+                        <li><a href="https://b2b.real.su/" target="_blank" rel="noopener noreferrer">Вакансии</a></li>
+                    </ul>
+                </li>
+                <li class="header__nav-item"><a href="https://b2b.real.su/" class="header__nav-link" target="_blank" rel="noopener noreferrer">Тарифы</a></li>
+                <li class="header__nav-item header__nav-item--submenu">
+                    <a href="#" class="header__nav-link">Услуги<span class="dropdown-icon"></span></a>
+                    <ul class="header__submenu">
+                        <li><a href="https://b2b.real.su/" target="_blank" rel="noopener noreferrer">Телевидение</a></li>
+                        <li><a href="https://b2b.real.su/" target="_blank" rel="noopener noreferrer">Видеонаблюдение</a></li>
+                        <li><a href="https://b2b.real.su/" target="_blank" rel="noopener noreferrer">Домашний телефон</a></li>
+                    </ul>
+                </li>
+                <li class="header__nav-item"><a href="https://b2b.real.su/" class="header__nav-link" target="_blank" rel="noopener noreferrer">Контакты</a></li>
+                <li class="header__nav-item"><a href="https://b2b.real.su/" class="header__nav-link" target="_blank" rel="noopener noreferrer">Помощь</a></li>
+                <li class="header__nav-item"><a href="https://b2b.real.su/" class="header__nav-link" target="_blank" rel="noopener noreferrer">Обратная связь</a></li>
+            </ul>
+        </div>
+        
+        <div class="header__overlay" id="overlay"></div>
+        
+    </header>
+    
+    <main>
+    
+    <div class="page-path">
+        <a href="">Главная</a><span> > Выбери свой тариф</span></div>
+    
+    <div class="container">    
+    <h1 class="main-title">ВЫБЕРИ СВОЙ ТАРИФ</h1>
+    
+    <div class="selection-container">
+        <div class="selection-box">
+            <label for="house-type">Дом</label>
+            <select id="house-type">
+                <option value="apartment">Многоквартирный</option>
+                <option value="private">Частный</option>
+            </select>
+        </div>
+        <span class="container-arrow">></span>
+        <div class="selection-box">
+            <label for="tariff-type">Тип тарифа</label>
+            <select id="tariff-type">
+                <option value="all" selected>Все тарифы</option>
+                <option value="internet">Интернет</option>
+                <option value="internet-tv">Интернет + ТВ</option>
+            </select>
+        </div>
+    </div>
+    </div>
+
+    <div class="tariffs-block">
+
+    <section class="tariffs-section full-width-section">
+    <div class="slider-wrapper">
+    <div id="tariff-slider" class="swiper">
+    <div class="swiper-wrapper">
+        <!-- 8 карточек тарифов -->
+        
+        <div class="swiper-slide">
+        <div class="tariff-card tariff-card--hit" data-tariff-type="internet">
+            <div class="badge-hit">ХИТ</div>
+            <div class="tariff-card__content">
+                <p class="tariff-card__title">ТУРБО ИНТЕРНЕТ</p>
+                <div class="tariff-card__desc">
+                    <span class="line line--speed"><svg class="icon icon-tariff" aria-hidden="true"><use xlink:href="#icon-speedometer"></use></svg> 100 Мбит/сек</span>
+                    <span class="line line--install"><svg class="icon icon-tariff" aria-hidden="true"><use xlink:href="#icon-cogwheel"></use></svg> Бесплатное подключение</span>
+                    <span class="line line--price">399 <svg class="icon icon-ruble" aria-hidden="true"><use xlink:href="#icon-ruble"></use></svg> / мес</span>
+                    <span class="line line--equipment-title">Оборудование</span>
+                    <span class="line line--router"><svg class="icon icon-tariff" aria-hidden="true"><use xlink:href="#icon-router"></use></svg>Роутер 100 <svg class="icon icon-ruble" aria-hidden="true"><use xlink:href="#icon-ruble"></use></svg> / мес</span>
+                </div>
+            </div>            
+           
+            <button class="connect-btn">Подключить</button>
+        </div>
+        </div>
+        
+        <div class="swiper-slide">
+        <div class="tariff-card" data-tariff-type="internet">
+            <div class="tariff-card__content">
+                <p class="tariff-card__title">СУПЕР ИНТЕРНЕТ</p>
+                <div class="tariff-card__desc">
+                    <span class="line line--speed"><svg class="icon icon-tariff" aria-hidden="true"><use xlink:href="#icon-speedometer"></use></svg> 200 Мбит/сек</span>
+                    <span class="line line--install"><svg class="icon icon-tariff" aria-hidden="true"><use xlink:href="#icon-cogwheel"></use></svg> Бесплатное подключение</span>
+                    <span class="line line--price">599 <svg class="icon icon-ruble" aria-hidden="true"><use xlink:href="#icon-ruble"></use></svg> / мес</span>
+                    <span class="line line--equipment-title">Оборудование</span>
+                    <span class="line line--router"><svg class="icon icon-tariff" aria-hidden="true"><use xlink:href="#icon-router"></use></svg>Роутер 50 <svg class="icon icon-ruble" aria-hidden="true"><use xlink:href="#icon-ruble"></use></svg> / мес</span>
+                </div>
+            </div>
+            
+            <button class="connect-btn">Подключить</button>
+        </div>
+        </div>
+        
+        <div class="swiper-slide">
+        <div class="tariff-card" data-tariff-type="internet-tv">
+            <div class="tariff-card__content">
+                <p class="tariff-card__title">КОМБО 100 ПАКЕТ</p>
+                <div class="tariff-card__desc">
+                    <span class="line line--speed"><svg class="icon icon-tariff" aria-hidden="true"><use xlink:href="#icon-speedometer"></use></svg> 100 Мбит/сек + 100 каналов</span>
+                    <span class="line line--install"><svg class="icon icon-tariff" aria-hidden="true"><use xlink:href="#icon-cogwheel"></use></svg> Бесплатное подключение</span>
+                    <span class="line line--price">499 <svg class="icon icon-ruble" aria-hidden="true"><use xlink:href="#icon-ruble"></use></svg> / мес</span>
+                    <span class="line line--equipment-title">Оборудование</span>
+                    <span class="line line--router"><svg class="icon icon-tariff" aria-hidden="true"><use xlink:href="#icon-router"></use></svg>Роутер 150<svg class="icon icon-ruble" aria-hidden="true"><use xlink:href="#icon-ruble"></use></svg>/мес</span>
+                </div>
+            </div>
+            
+            <button class="connect-btn">Подключить</button>
+        </div>
+        </div>
+        
+        <div class="swiper-slide">
+        <div class="tariff-card" data-tariff-type="internet">
+            <div class="tariff-card__content">
+                <p class="tariff-card__title">БЫСТРЫЙ ИНТЕРНЕТ</p>
+                <div class="tariff-card__desc">
+                    <span class="line line--speed"><svg class="icon icon-tariff" aria-hidden="true"><use xlink:href="#icon-speedometer"></use></svg> 50 Мбит/сек</span>
+                    <span class="line line--install"><svg class="icon icon-tariff" aria-hidden="true"><use xlink:href="#icon-cogwheel"></use></svg> Бесплатное подключение</span>
+                    <span class="line line--price">199 <svg class="icon icon-ruble" aria-hidden="true"><use xlink:href="#icon-ruble"></use></svg> / мес</span>
+                    <span class="line line--equipment-title">Оборудование</span>
+                    <span class="line line--router"><svg class="icon icon-tariff" aria-hidden="true"><use xlink:href="#icon-router"></use></svg>Роутер 50 <svg class="icon icon-ruble" aria-hidden="true"><use xlink:href="#icon-ruble"></use></svg> / мес</span>
+                </div>
+            </div>
+            
+            <button class="connect-btn">Подключить</button>
+        </div>
+        </div>
+       
+        <div class="swiper-slide">
+        <div class="tariff-card" data-tariff-type="internet">
+            <div class="tariff-card__content">
+                <p class="tariff-card__title">ПРЕМИУМ ИНТЕРНЕТ</p>
+                <div class="tariff-card__desc">
+                    <span class="line line--speed"><svg class="icon icon-tariff" aria-hidden="true"><use xlink:href="#icon-speedometer"></use></svg> 300 Мбит/сек</span>
+                    <span class="line line--install"><svg class="icon icon-tariff" aria-hidden="true"><use xlink:href="#icon-cogwheel"></use></svg> Бесплатное подключение</span>
+                    <span class="line line--price">399 <svg class="icon icon-ruble" aria-hidden="true"><use xlink:href="#icon-ruble"></use></svg> / мес</span>
+                    <span class="line line--equipment-title">Оборудование</span>
+                    <span class="line line--router"><svg class="icon icon-tariff" aria-hidden="true"><use xlink:href="#icon-router"></use></svg>Роутер 100 <svg class="icon icon-ruble" aria-hidden="true"><use xlink:href="#icon-ruble"></use></svg> / мес</span>
+                </div>
+            </div>
+            
+            <button class="connect-btn">Подключить</button>
+        </div>
+        </div>
+        
+        <div class="swiper-slide">
+       <div class="tariff-card" data-tariff-type="internet">
+            <div class="tariff-card__content">
+                <p class="tariff-card__title">ЭКОНОМ ИНТЕРНЕТ</p>
+                <div class="tariff-card__desc">
+                    <span class="line line--speed"><svg class="icon icon-tariff" aria-hidden="true"><use xlink:href="#icon-speedometer"></use></svg> 20 Мбит/сек</span>
+                    <span class="line line--install"><svg class="icon icon-tariff" aria-hidden="true"><use xlink:href="#icon-cogwheel"></use></svg> Бесплатное подключение</span>
+                    <span class="line line--price">99 <svg class="icon icon-ruble" aria-hidden="true"><use xlink:href="#icon-ruble"></use></svg> / мес</span>
+                    <span class="line line--equipment-title">Оборудование</span>
+                    <span class="line line--router"><svg class="icon icon-tariff" aria-hidden="true"><use xlink:href="#icon-router"></use></svg>Роутер 30 <svg class="icon icon-ruble" aria-hidden="true"><use xlink:href="#icon-ruble"></use></svg> / мес</span>
+                </div>
+            </div>
+            
+            <button class="connect-btn">Подключить</button>
+        </div>
+        </div>
+        
+        <div class="swiper-slide">
+        <div class="tariff-card" data-tariff-type="internet-tv">
+            <div class="tariff-card__content">
+                <p class="tariff-card__title">МАКСИ 200 КОМБО</p>
+                <div class="tariff-card__desc">
+                    <span class="line line--speed"><svg class="icon icon-tariff" aria-hidden="true"><use xlink:href="#icon-speedometer"></use></svg> 200 Мбит/сек + 200 каналов</span>
+                    <span class="line line--install"><svg class="icon icon-tariff" aria-hidden="true"><use xlink:href="#icon-cogwheel"></use></svg> Бесплатное подключение</span>
+                    <span class="line line--price">599 <svg class="icon icon-ruble" aria-hidden="true"><use xlink:href="#icon-ruble"></use></svg> / мес</span>
+                    <span class="line line--equipment-title">Оборудование</span>
+                    <span class="line line--router"><svg class="icon icon-tariff" aria-hidden="true"><use xlink:href="#icon-router"></use></svg>Роутер 200 <svg class="icon icon-ruble" aria-hidden="true"><use xlink:href="#icon-ruble"></use></svg> / мес</span>
+                </div>
+            </div>
+            
+            <button class="connect-btn">Подключить</button>
+        </div>
+        </div>
+        
+        <div class="swiper-slide">
+        <div class="tariff-card" data-tariff-type="internet">
+            <div class="tariff-card__content">
+                <p class="tariff-card__title">БАЗОВЫЙ</p>
+                <div class="tariff-card__desc">
+                    <span class="line line--speed"><svg class="icon icon-tariff" aria-hidden="true"><use xlink:href="#icon-speedometer"></use></svg> 50 Мбит/сек</span>
+                    <span class="line line--install"><svg class="icon icon-tariff" aria-hidden="true"><use xlink:href="#icon-cogwheel"></use></svg> Бесплатное подключение</span>
+                    <span class="line line--price">149 <svg class="icon icon-ruble" aria-hidden="true"><use xlink:href="#icon-ruble"></use></svg> / мес</span>
+                    <span class="line line--equipment-title">Оборудование</span>
+                    <span class="line line--router"><svg class="icon icon-tariff" aria-hidden="true"><use xlink:href="#icon-router"></use></svg>Роутер 40 <svg class="icon icon-ruble" aria-hidden="true"><use xlink:href="#icon-ruble"></use></svg> / мес</span>
+                </div>
+            </div>
+            
+            <button class="connect-btn">Подключить</button>
+        </div>
+        </div>
+        
+        
+    </div>
+    </div>
+    <button id="prev" class="swiper-button-prev slider-btn">‹</button>
+        <button id="next" class="swiper-button-next slider-btn">›</button>
+    </section>
+    
+    <!--<div class="slider-controls">-->
+    
+    <div id="dots" class="swiper-pagination"></div>
+    
+<!--</div>-->
+</div>
+
+    <!-- ОБНОВЛЕННЫЙ БЛОК POP-UP -->
+<div id="popup" class="popup">
+    <div class="popup-content">
+        <span class="popup-close">&times;</span>
+        
+        <form id="connection-form" class="connection-form">
+            <h2 class="form-title">Оставьте заявку на подключение</h2>
+            <p class="form-subtitle">И мы свяжемся с Вами в ближайшее время</p>
+
+            <div class="form-row">
+            <div class="form-group">
+                <label for="form-name">Фамилия и имя</label>
+                <input type="text" id="form-name" name="name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="form-phone">Телефон</label>
+                <input type="tel" id="form-phone" name="phone" required>
+            </div>
+            </div>
+
+            <div class="form-group">
+                <label for="form-address">Адрес</label>
+                <input type="text" id="form-address" name="address" required>
+            </div>
+
+            <div class="form-row">
+            <div class="form-group">
+                <label for="form-service">Услуга</label>
+                <select id="form-service" name="service">
+                    <option value="internet">Подключение интернета</option>
+                    <option value="internet-tv">Подключение интернета и ТВ</option>
+                    <option value="camera">Установка камеры</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="form-promo">Промокод</label>
+                <input type="text" id="form-promo" name="promo">
+            </div>
+            </div>
+
+            <button type="submit" class="form-submit-btn">Подключить</button>
+        </form>
+        
+    </div>
+</div>
+
+    
+    
+    
+    <div class="container">
+    <div class="speed-check-container">
+        <span class="speed-check-text__blue">Проверить скорость Вашего <br>интернет-соединения можно </span>
+        <span class="speed-check-text__red">ПРЯМО СЕЙЧАС</span>
+        
+        <a class="speed-check-btn" href="https://b2b.real.su/" target="_blank" rel="noopener noreferrer">Проверить</a>
+    </div>
+    </div>
+    
+    <section class="map-section full-width-section">   
+    <div id="map" style="width: 100%; height: 400px; margin: 30px auto;"></div>
+    </section>
+    
+    
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=ваш-api-ключ&lang=ru_RU" type="text/javascript"></script>
+    
+   <div class="partners-slider-wrapper">
+    <!-- Главный контейнер Swiper -->
+    <div id="partners-slider" class="swiper">
+        <!-- Обязательная обертка -->
+        <div class="swiper-wrapper">
+            <!-- Первая группа партнеров -->
+            <div class="swiper-slide">
+                <a href="https://www.yandex.ru/" target="_blank" rel="noopener noreferrer">
+                    <img src="./assets/svg/A24.svg" alt="Астрахань 24" />
+                </a>
+            </div>
+            <div class="swiper-slide">
+                <a href="https://www.yandex.ru/" target="_blank" rel="noopener noreferrer">
+                    <img src="./assets/sber.webp" alt="Сбербанк" />
+                </a>
+            </div>
+            <div class="swiper-slide">
+                <a href="https://www.yandex.ru/" target="_blank" rel="noopener noreferrer">
+                    <img src="./assets/astra-logo.webp" alt="Астра" />
+                </a>
+            </div>
+            <div class="swiper-slide">
+                <a href="https://www.yandex.ru/" target="_blank" rel="noopener noreferrer">
+                    <img src="./assets/pilot.webp" alt="Пилот" />
+                </a>
+            </div>
+            <div class="swiper-slide">
+                <a href="https://www.yandex.ru/" target="_blank" rel="noopener noreferrer">
+                    <!-- Можно добавить еще одного партнера или оставить пустым -->
+                    <img src="./assets/svg/10andmore.svg" alt="10 и более" />
+                </a>
+            </div>
+            <div class="swiper-slide">
+                <a href="https://www.yandex.ru/" target="_blank" rel="noopener noreferrer">
+                    <img src="./assets/svg/A24.svg" alt="Астрахань 24" />
+                </a>
+            </div>
+            <div class="swiper-slide">
+                <a href="https://www.yandex.ru/" target="_blank" rel="noopener noreferrer">
+                    <img src="./assets/sber.webp" alt="Сбербанк" />
+                </a>
+            </div>
+            <div class="swiper-slide">
+                <a href="https://www.yandex.ru/" target="_blank" rel="noopener noreferrer">
+                    <img src="./assets/astra-logo.webp" alt="Астра" />
+                </a>
+            </div>
+            <div class="swiper-slide">
+                <a href="https://www.yandex.ru/" target="_blank" rel="noopener noreferrer">
+                    <img src="./assets/pilot.webp" alt="Пилот" />
+                </a>
+            </div>
+            <div class="swiper-slide">
+                <a href="https://www.yandex.ru/" target="_blank" rel="noopener noreferrer">
+                    <img src="./assets/svg/10andmore.svg" alt="10 и более" />
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+</main>
+
+ <footer class="footer" id="footer">
+    <!-- Левая часть -->
+    <div class="footer-left">
+      <div class="logo"><img src="./assets/svg/logo-white.svg" alt="Реал на белом фоне"></div>
+      <div class="social-icons">
+        <!-- Иконка ВКонтакте -->
+        <a href="https://vk.com" target="_blank" class="social-icon-wrapper" aria-label="ВКонтакте">
+            <svg class="social-icon" aria-hidden="true"><use xlink:href="#icon-vk"></use></svg>
+        </a>
+         <!--Иконка Telegram -->
+        <!-- Telegram -->
+        <a href="https://t.me" target="_blank" class="social-icon-wrapper" aria-label="Telegram">
+            <svg class="social-icon" aria-hidden="true"><use xlink:href="#icon-tg"></use></svg>
+        </a>
+        <!-- Иконка YouTube -->
+        <a href="https://ok.ru" target="_blank" class="social-icon-wrapper" aria-label="Одноклассники">
+            <svg class="social-icon" aria-hidden="true"><use xlink:href="#icon-ok"></use></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Правая часть — меню -->
+    <div class="footer-right">
+      <!-- О компании -->
+      <div class="footer-column">
+        <h4>О КОМПАНИИ</h4>
+        <ul>
+          <li><a href="#">Вакансии</a></li>
+          <li><a href="#">Лицензии</a></li>
+          <li><a href="#">Благодарственные письма</a></li>
+          <li><a href="#">Сертификаты</a></li>
+          <li><a href="#">Документы</a></li>
+          <li><a href="#">Способы оплаты</a></li>
+          <li><a href="#">СОУТ</a></li>
+        </ul>
+      </div>
+
+      <!-- Услуги -->
+      <div class="footer-column">
+        <h4>УСЛУГИ</h4>
+        <ul>
+          <li><a href="#">Видеонаблюдение</a></li>
+          <li><a href="#">Домашний телефон</a></li>
+          <li><a href="#">Сервисные услуги</a></li>
+          <li><a href="#">Телевидение</a></li>
+          <li><a href="#">Интернет в частный дом</a></li>
+          <li><a href="#">Умныый домофон</a></li>
+          <li><a href="#">Акии</a></li>
+        </ul>
+      </div>
+
+      <!-- Тарифы -->
+      <div class="footer-column">
+        <h4>ТАРИФЫ</h4>
+        <ul>
+          <li><a href="#">В квартиру</a></li>
+          <li><a href="#">Частный</a></li>
+        </ul>
+      
+      
+
+      <!-- Контакты -->
+     
+        <h4>КОНТАКТЫ</h4>
+   
+
+      <!-- Помощь -->
+    
+        <h4>ПОМОЩЬ</h4>
+      </div>
+    </div>
+  </footer>
+    
+    
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('Страница полностью загружена. Запускаем приложение...');
+
+    /**
+     *  1. ЛОГИКА ДЛЯ POP-UP (Изолирована и надежна)
+     */
+    function initPopup() {
+    const popup = document.getElementById('popup');
+    if (!popup) return;
+
+    document.body.addEventListener('click', function(event) {
+        if (event.target.closest('.connect-btn')) {
+            popup.classList.add('show');
+        } 
+        // Ищем ЛИБО .popup-close (для крестика), ЛИБО .js-popup-close (для кнопки "Нет")
+        else if (event.target.closest('.popup-close') || event.target === popup) {
+            popup.classList.remove('show');
+        }
+    });
+}
+
+        /**
+     *  2. ЛОГИКА ДЛЯ ХЕДЕРА И МЕНЮ (Исправленная версия с оверлеем)
+     */
+    function initHeaderMenu() {
+        console.log('2. Инициализация хедера и меню...');
+        const header = document.querySelector('.header'); // Получаем сам header
+        const burgerMenu = document.getElementById('burger-menu');
+        const navList = document.getElementById('nav-list');
+        const submenuItems = document.querySelectorAll('.header__nav-item--submenu');
+        const overlay = document.getElementById('overlay');
+
+        // Проверяем наличие всех ключевых элементов
+        if (!header || !burgerMenu || !navList || !overlay) {
+            console.warn('Один или несколько элементов хедера не найдены. Меню может работать некорректно.');
+            return;
+        }
+
+        // --- Бургер ---
+        burgerMenu.addEventListener('click', (e) => {
+            e.stopPropagation(); // Изолируем клик по бургеру
+            burgerMenu.classList.toggle('active');
+            navList.classList.toggle('active');
+            
+            // Показываем или скрываем оверлей для бургер-меню
+            const isNavActive = navList.classList.contains('active');
+            if (isNavActive) {
+                const headerHeight = header.offsetHeight; // Получаем высоту шапки
+                overlay.style.top = `${headerHeight}px`; // Устанавливаем отступ
+                overlay.style.display = 'block';
+            } else {
+                overlay.style.display = 'none';
+            }
+        });
+
+        // --- Выпадающие меню (десктоп) ---
+        submenuItems.forEach(item => {
+            const triggerLink = item.querySelector('a.header__nav-link');
+            const submenu = item.querySelector('.header__submenu');
+            if (!triggerLink || !submenu) return;
+
+            triggerLink.addEventListener('click', (e) => {
+                // Работаем только с ссылками, которые никуда не ведут
+                if (triggerLink.getAttribute('href') === '#') {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    const isOpened = submenu.style.display === 'block';
+                    
+                    // Сначала закрываем все открытые подменю
+                    document.querySelectorAll('.header__submenu').forEach(s => s.style.display = 'none');
+                    
+                    if (!isOpened) {
+                        submenu.style.display = 'block';
+                        const headerHeight = header.offsetHeight; // Получаем актуальную высоту шапки
+                        overlay.style.top = `${headerHeight}px`;   // Устанавливаем отступ для оверлея
+                        overlay.style.display = 'block';           // Показываем оверлей
+                    } else {
+                        // Если меню было открыто и мы его закрыли, скрываем оверлей
+                        overlay.style.display = 'none';
+                    }
+                }
+            });
+        });
+
+        // --- Закрытие меню по клику вне ---
+        document.addEventListener('click', (e) => {
+            // Если клик был не внутри навигации
+            if (!e.target.closest('.header__menu-wrapper')) {
+                // Закрываем все подменю
+                document.querySelectorAll('.header__submenu').forEach(s => s.style.display = 'none');
+                
+                // Если бургер-меню активно, закрываем его
+                if (navList.classList.contains('active')) {
+                    burgerMenu.classList.remove('active');
+                    navList.classList.remove('active');
+                }
+
+                // В любом случае скрываем оверлей
+                overlay.style.display = 'none';
+            }
+        });
+    }
+
+   /**
+ *  3. ЛОГИКА СЛАЙДЕРА И ФИЛЬТРА (Переделано на Swiper.js)
+ */
+function initTariffSlider() {
+    console.log('3. Инициализация слайдера Swiper...');
+    
+    // Проверяем, подключен ли Swiper
+    if (typeof Swiper === 'undefined') {
+        console.error('Библиотека Swiper не найдена!');
+        return;
+    }
+
+    const swiper = new Swiper('#tariff-slider', {
+        // Опции Swiper
+        loop: false, // Зацикливание
+        slidesPerView: 'auto', // Автоматически определять кол-во видимых слайдов
+        centeredSlides: true, // Активный слайд всегда по центру
+        spaceBetween: 20, // Расстояние между слайдами
+
+        // Навигация (кнопки)
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+
+       
+    });
+
+    // Логика для фильтра
+    const tariffFilter = document.getElementById('tariff-type');
+    if (tariffFilter) {
+        tariffFilter.addEventListener('change', () => {
+            const filterValue = tariffFilter.value;
+            
+            // Проходим по всем слайдам
+            swiper.slides.forEach(slide => {
+                const card = slide.querySelector('.tariff-card');
+                if (filterValue === 'all' || card.dataset.tariffType === filterValue) {
+                    slide.style.display = 'flex'; // Показываем слайд
+                } else {
+                    slide.style.display = 'none'; // Скрываем слайд
+                }
+            });
+            
+            swiper.update(); // Обновляем Swiper, чтобы он пересчитал слайды
+            swiper.slideTo(0); // Переходим к первому слайду после фильтрации
+        });
+    }
+}
+
+
+
+    /**
+     *  4. ЛОГИКА YANDEX MAPS
+     */
+    function initYandexMap() {
+        // ... (вставьте сюда вашу рабочую версию initYandexMap) ...
+        console.log('4. Инициализация Яндекс.Карты...');
+        try {
+            if (typeof ymaps === 'undefined' || !document.getElementById("map")) {
+                console.warn("Карта Яндекс не будет загружена: API или элемент #map не найдены.");
+            }
+            ymaps.ready(() => {
+                const myMap = new ymaps.Map("map", { center: [46.336355, 48.039241], zoom: 14, controls: ['zoomControl', 'fullscreenControl'] });
+                const myPlacemark = new ymaps.Placemark([46.336355, 48.039241], { balloonContent:  `<img src="./assets/real-adress.webp" alt="Офис компании РЕАЛ" style="width:250px; height:auto; border-radius: 8px;">`, hintContent: 'Наш офис' }, { iconLayout: 'default#image', iconImageHref: './assets/svg/icon.svg', iconImageSize: [40, 40], iconImageOffset: [-20, -40] });
+                myMap.geoObjects.add(myPlacemark);
+                console.log('Карта Яндекс успешно создана.');
+            });
+        } catch (error) {
+            console.error('Ошибка в initYandexMap:', error);
+        }
+    }
+/**
+ *  5. ЛОГИКА СЛАЙДЕРА ПАРТНЕРОВ (Финальная версия для CSS-анимации)
+ */
+function initPartnersSlider() {
+    console.log('5. Инициализация слайдера партнеров для CSS-анимации...');
+
+    if (typeof Swiper === 'undefined') {
+        console.error('Библиотека Swiper не найдена!');
+        return;
+    }
+
+    new Swiper('#partners-slider', {
+        // Простая конфигурация для отображения
+        loop: false,
+        allowTouchMove: true,
+        autoplay: false,
+
+        breakpoints: {
+            320: { slidesPerView: 3, spaceBetween: 20 },
+            480: { slidesPerView: 4, spaceBetween: 30 },
+            768: { slidesPerView: 5, spaceBetween: 40 },
+            1024: { slidesPerView: 7, spaceBetween: 60 }
+        }
+    });
+}
+
+
+
+
+    // Запускаем все модули
+    initPopup();
+    initHeaderMenu();
+    initTariffSlider();
+    initYandexMap();
+    initPartnersSlider(); 
+    console.log('Все модули инициализированы.');
+}); 
+</script>
+
+
+ <!-- Swiper JS via CDN -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+   
+</body>
+</html>

@@ -1,0 +1,918 @@
+/* ==========================================================================
+   1. ГЛОБАЛЬНЫЕ СТИЛИ И ПЕРЕМЕННЫЕ
+   ========================================================================== */
+
+/*
+ * :root — это псевдокласс, который представляет корневой элемент документа (<html>).
+ * Здесь мы объявляем CSS-переменные (Custom Properties), которые можно будет
+ * использовать по всему сайту. Это упрощает поддержку и изменение дизайна.
+ */
+:root {
+  /* Цветовая палитра */
+  --color-primary: #1565c0;       /* Основной синий (кнопки, ссылки) */
+  --color-primary-dark: #0d47a1;  /* Темный синий (для :hover) */
+  --color-accent-red: #db1414;    /* Акцентный красный (цена) */
+  --color-hit: #e63946;            /* Красный для бейджа "Хит" */
+  --color-text-main: #333;         /* Основной цвет текста */
+  --color-text-light: #a9a9a9;     /* Светлый, серый текст (подписи) */
+  --color-white: #fff;             /* Белый */
+  --color-black: #000;             /* Черный */
+  --color-background: #f0f0f0;     /* Основной фон страницы */
+  --color-border: #ddd;             /* Цвет рамок */
+
+  /* Типографика */
+  --font-family-main: Arial, sans-serif;
+  --font-size-base: 1.6rem;         /* Базовый размер шрифта (16px) */
+
+  /* Отступы */
+  --spacing-xs: 0.5rem;   /* 5px */
+  --spacing-s: 1rem;      /* 10px */
+  --spacing-m: 1.5rem;    /* 15px */
+  --spacing-l: 2rem;      /* 20px */
+  --spacing-xl: 4rem;     /* 40px */
+
+  /* Прочее */
+  --border-radius-small: 4px;
+  --border-radius-main: 10px;
+  --transition-speed: 0.3s;
+}
+
+/*
+ * Трюк для упрощения работы с rem.
+ * 16px (стандартный размер шрифта) * 62.5% = 10px.
+ * Теперь 1rem = 10px, что делает конвертацию интуитивной.
+ */
+html {
+  font-size: 62.5%;
+  box-sizing: border-box; /* Устанавливаем универсальную модель расчета размеров */
+}
+
+/*
+ * Наследуем box-sizing для всех элементов.
+ * Это предотвращает проблемы с расчетом ширины/высоты из-за padding и border.
+ */
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family-main);
+  font-size: var(--font-size-base); /* Базовый размер шрифта для всего сайта */
+  color: var(--color-text-main);
+  background-color: var(--color-background);
+}
+
+.container {
+  width: 100%;
+  max-width: 120rem; /* 1200px */
+  margin: 0 auto;
+  padding: 0 var(--spacing-m);
+}
+
+/* Скрытый заголовок для доступности (для скринридеров) */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+
+/* ==========================================================================
+   2. ШАПКА (HEADER)
+   ========================================================================== */
+
+/* --- Верхняя серая полоса (Top Bar) --- */
+.top-bar {
+  background-color: #D3D3D3;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-s);
+}
+
+.left-links a,
+.left-links span {
+  color: grey;
+  text-decoration: none;
+}
+
+.right-links a {
+  color: var(--color-black);
+  text-decoration: none;
+}
+
+/* --- Основной блок шапки --- */
+.header {
+  background-color: var(--color-black);
+  position: relative;
+  z-index: 1000;
+}
+
+/* Контейнер с лого, поиском и контактами */
+.header__container {
+  background-color: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-xs) var(--spacing-s);
+  gap: var(--spacing-m);
+}
+
+.header__logo-img {
+  width: 6.4rem;
+  height: 6.4rem;
+}
+
+/* Поиск */
+.header__search {
+  flex: 0 0 auto;
+  width: clamp(24rem, 35vw, 36rem); /* Адаптивная ширина */
+}
+
+/* 
+ * Контейнер, который оборачивает поле ввода и кнопку.
+ * Именно ему мы задаем рамку.
+ */
+.header__search-wrapper {
+  display: flex;
+  align-items: center;
+  width: 100%; /* Занимает всю ширину родителя .header__search */
+  overflow: hidden; /* Скрывает все, что выходит за скругленные углы */
+  
+  /* --- ИЗМЕНЕНИЯ ЗДЕСЬ --- */
+  
+  /* 1. Задаем более заметную рамку */
+  border: 2px solid var(--color-border); /* Рамка толщиной 2px светло-серого цвета */
+  border-radius: 8px; /* Скругляем углы */
+  
+  /* 2. Добавляем плавный переход для цвета рамки */
+  transition: border-color var(--transition-speed) ease;
+}
+
+/* 
+ * :focus-within — это псевдокласс, который срабатывает,
+ * когда сам элемент или любой его дочерний элемент (в нашем случае <input>)
+ * получает фокус (т.е. когда пользователь кликает в поле).
+ */
+.header__search-wrapper:focus-within {
+  /* 3. При фокусе делаем рамку синей и яркой */
+  border-color: var(--color-primary); 
+}
+
+
+.header__search-input {
+  flex: 1;
+  border: none; /* Убираем собственную рамку поля ввода */
+  outline: none; /* Убираем стандартную обводку при фокусе */
+  padding: 0.8rem 1.2rem;
+  background-color: transparent; /* Делаем фон прозрачным */
+  font-size: 1.4rem;
+}
+
+.header__search-btn {
+  border: none;
+  background: transparent; /* Фон кнопки тоже прозрачный */
+  padding: 0.8rem 1.2rem;
+  cursor: pointer;
+  color: var(--color-text-light);
+}
+
+/* Контакты */
+.header__contact {
+  white-space: nowrap; /* Запрет переноса строки */
+}
+
+.header__phone {
+  font-style: normal;
+  font-weight: 600;
+  color: inherit;
+  text-decoration: none;
+}
+
+/* --- Навигационное меню --- */
+.header__menu-wrapper {
+  background-color: var(--color-black);
+  padding: var(--spacing-s);
+}
+
+.header__nav-list {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.header__nav-item {
+  margin: 0 var(--spacing-s);
+  position: relative;
+}
+
+.header__nav-link {
+  color: var(--color-white);
+  text-decoration: none;
+  padding: 0.1rem 0.3rem;
+  display: block;
+}
+
+/* Выпадающее подменю */
+.header__submenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  list-style: none;
+  padding: var(--spacing-s);
+  margin: 0;
+  background-color: var(--color-black);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1001;
+}
+
+.header__submenu li {
+  margin: var(--spacing-xs) 0;
+}
+
+.header__submenu a {
+  color: var(--color-white);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* Иконка стрелки для подменю */
+.dropdown-icon::after {
+  content: '▾';
+  display: inline-block;
+  margin-left: var(--spacing-xs);
+  font-size: 0.8em;
+}
+
+/* Показ подменю при наведении на десктопе */
+@media (min-width: 769px) {
+  .header__nav-item--submenu:hover .header__submenu {
+    display: block;
+  }
+}
+
+/* --- Бургер-меню и оверлей для мобильных --- */
+.burger-menu {
+  display: none; /* Скрыто по умолчанию */
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.burger-menu span {
+  display: block;
+  width: 2.5rem;
+  height: 0.3rem;
+  background-color: var(--color-white);
+  margin: var(--spacing-xs) 0;
+  transition: all var(--transition-speed) ease;
+}
+
+.header__overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+/* --- Адаптивность шапки --- */
+@media (max-width: 768px) {
+  .header__container {
+    flex-wrap: wrap;
+  }
+  .header__logo {
+    order: 1;
+  }
+  .header__search {
+    order: 3;
+    width: 100%; /* Поиск на всю ширину */
+  }
+  .header__contact {
+    order: 2;
+  }
+
+  .header__nav-list {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%; /* Появляется под черной полосой */
+    left: 0;
+    width: 100%;
+    background-color: var(--color-black);
+  }
+  .header__nav-list.active {
+    display: flex;
+  }
+  .header__nav-item {
+    margin: var(--spacing-s) 0;
+    width: 100%;
+    text-align: center;
+  }
+  .header__submenu {
+    position: static; /* Встраивается в поток */
+    box-shadow: none;
+    background-color: #222; /* Чуть светлее для вложенности */
+  }
+  .burger-menu {
+    display: block;
+  }
+}
+
+
+/* ==========================================================================
+   3. ОСНОВНОЙ КОНТЕНТ (MAIN)
+   ========================================================================== */
+
+/* --- "Хлебные крошки" (путь по сайту) --- */
+.page-path {
+  padding: var(--spacing-s);
+  color: var(--color-text-light);
+  font-size: 1rem;
+  font-weight: bolder;
+}
+.page-path a {
+  text-decoration: none;
+  color: var(--color-primary);
+}
+
+/* --- Основной заголовок страницы --- */
+.main-title {
+  text-align: center;
+  font-size: 3rem;
+  margin: var(--spacing-l) 0;
+}
+
+/* --- Блок с выпадающими списками --- */
+.selection-container {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-l);
+  margin: var(--spacing-l) 0;
+  flex-wrap: wrap;
+}
+
+.selection-box {
+  width: 16.5rem;
+  background-color: var(--color-white);
+  padding: var(--spacing-xs);
+  border: 1px solid #ccc;
+  border-radius: var(--border-radius-small);
+  position: relative;
+}
+
+.selection-box label {
+  display: block;
+  margin-bottom: var(--spacing-xs);
+  color: var(--color-text-light);
+  font-size: 1.2rem;
+}
+
+.selection-box select {
+  padding: var(--spacing-xs);
+  font-size: 1.4rem;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  width: 100%;
+  appearance: none; /* Убираем стандартную стрелку */
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+/* Кастомная стрелка для select */
+.selection-box::after {
+  content: '▼';
+  position: absolute;
+  top: 50%;
+  right: var(--spacing-s);
+  transform: translateY(-50%);
+  color: var(--color-text-main);
+  font-size: 1.2rem;
+  pointer-events: none; /* Чтобы клик проходил на select */
+}
+
+
+/* ==========================================================================
+   4. СЛАЙДЕР ТАРИФОВ (SWIPER)
+   ========================================================================== */
+
+.tariffs-block {
+  position: relative;
+  padding: 0 var(--spacing-l);
+}
+
+#tariff-slider {
+  padding: 2rem 1rem 3rem 1rem;
+   overflow: hidden;
+}
+
+/* Ключевое правило для Swiper, чтобы слайды имели собственную ширину */
+#tariff-slider .swiper-slide {
+  width: auto;
+  height: auto; /* Позволяет слайдам растягиваться по высоте содержимого */
+  display: flex; /* Для корректной работы flex в дочерних элементах */
+}
+
+/* --- Карточка тарифа --- */
+.tariff-card {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-main);
+  text-align: center;
+  
+  /* ИЗМЕНЕНИЕ: Уменьшаем ширину карточки */
+  width: 25rem; /* 250px. Можете подобрать значение, которое вам нравится */
+  
+  padding: var(--spacing-s);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: box-shadow var(--transition-speed) ease, border-color var(--transition-speed) ease;
+}
+
+.tariff-card:hover {
+  z-index: 10;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Модификатор для "Хита продаж" */
+.tariff-card--hit {
+  border: 3px solid var(--color-hit);
+  position: relative;
+}
+
+.badge-hit {
+  position: absolute;
+  top: -1.5rem; /* Выносим бейдж немного наверх */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--color-hit);
+  color: var(--color-white);
+  font-weight: bold;
+  font-size: 1.2rem;
+  padding: var(--spacing-xs) var(--spacing-s);
+  border-radius: var(--border-radius-small);
+  text-transform: uppercase;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+}
+
+/* Содержимое карточки */
+.tariff-card__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  flex-grow: 1; /* Занимает все доступное пространство, отодвигая кнопку вниз */
+}
+
+.tariff-card__title {
+  font-weight: bold;
+  font-size: 2.2rem;
+  margin: var(--spacing-s) 0;
+  
+  /* Обрезка текста до 2 строк */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
+  height: calc(1.2em * 2); /* Фиксируем высоту под 2 строки */
+}
+
+.tariff-card__desc {
+  font-size: 1.4rem;
+  line-height: 1.4;
+  min-height: calc(1.4em * 5); /* Минимальная высота под 5 строк */
+}
+
+.line {
+  display: block;
+  margin: 0.6rem 0;
+}
+
+.line--price {
+  color: var(--color-accent-red);
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.line--equipment-title {
+  opacity: .7;
+  color: var(--color-text-light);
+  margin-top: var(--spacing-s);
+}
+
+/* Кнопка "Подключить" */
+.connect-btn {
+  display: block;
+  width: 70%;
+  margin: var(--spacing-l) auto 0; /* Убрали нижний отступ, т.к. есть padding у карточки */
+  padding: var(--spacing-s);
+  background: var(--color-primary);
+  color: var(--color-white);
+  border: none;
+  border-radius: var(--border-radius-main);
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: auto; /* Главное свойство, прижимающее кнопку к низу */
+  transition: background-color var(--transition-speed) ease, transform 0.1s ease;
+}
+
+.connect-btn:hover {
+  background: var(--color-primary-dark);
+}
+
+.connect-btn:active {
+  transform: translateY(1px);
+}
+
+/* --- Кнопки навигации для слайдера тарифов --- */
+#tariff-slider .swiper-button-prev,
+#tariff-slider .swiper-button-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 4.4rem;
+  height: 4.4rem;
+  background-color: var(--color-white);
+  border: 1px solid #eee;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-main);
+  font-size: 2.4rem;
+  font-weight: bold;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+#tariff-slider .swiper-button-prev:hover,
+#tariff-slider .swiper-button-next:hover {
+  background-color: #f0f0f0;
+}
+
+#tariff-slider .swiper-button-disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+#tariff-slider .swiper-button-prev { left: -1rem; }
+#tariff-slider .swiper-button-next { right: -1rem; }
+
+/* Скрываем стандартные стрелки Swiper */
+#tariff-slider .swiper-button-next::after, 
+#tariff-slider .swiper-button-prev::after {
+  display: none;
+}
+
+
+
+/* ==========================================================================
+   X. БЛОК ПРОВЕРКИ СКОРОСТИ (ОБНОВЛЕННЫЙ)
+   ========================================================================== */
+
+.speed-check-container {
+    display: flex;
+    flex-wrap: wrap; /* Разрешаем перенос на новую строку на маленьких экранах */
+    justify-content: center; /* Центрируем содержимое по горизонтали */
+    align-items: center; /* Центрируем содержимое по вертикали */
+    gap: 1.2rem; /* Расстояние между элементами */
+    
+    /* Эти свойства центрируют сам блок на странице */
+    max-width: 90rem; /* Ограничиваем ширину, чтобы центрирование было заметно */
+    margin: var(--spacing-l) auto; /* Автоматические отступы слева/справа для центрирования */
+    padding: var(--spacing-l); /* Внутренние отступы для воздуха */
+    
+    /* Для красоты можно добавить фон и рамку */
+    background-color: var(--color-white);
+    border-radius: var(--border-radius-main);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.speed-check-text {
+    font-size: 1.8rem;
+    font-weight: 500;
+    line-height: 1.4;
+    
+    /* ИЗМЕНЕНИЕ: Основной текст теперь по умолчанию синий */
+    color: var(--color-primary); 
+}
+
+/* Этот класс больше не нужен для синего цвета, но оставим его для гибкости */
+.speed-check-text__blue {
+    color: var(--color-primary);
+}
+
+/* Этот класс нужен для выделения части текста красным */
+.speed-check-text__red {
+    color: var(--color-accent-red);
+    font-weight: bold;
+}
+
+.speed-check-btn {
+    /* ИЗМЕНЕНИЕ: Фон стал красным, а текст белым */
+    background-color: var(--color-accent-red);
+    color: var(--color-white);
+    
+    border: none;
+    padding: 1rem 1.6rem;
+    border-radius: var(--border-radius-small);
+    font-size: 1.6rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color var(--transition-speed) ease, transform 0.1s ease;
+}
+
+.speed-check-btn:hover {
+    /* ИЗМЕНЕНИЕ: Сделаем фон чуть темнее при наведении */
+    background-color: #c00; /* Более темный красный */
+}
+
+.speed-check-btn:active {
+    transform: translateY(1px);
+}
+
+
+/* ==========================================================================
+   5. СЛАЙДЕР ПАРТНЕРОВ (БЕСКОНЕЧНАЯ ПРОКРУТКА)
+   ========================================================================== */
+
+.partners-slider-wrapper {
+  background-color: var(--color-white);
+  padding: var(--spacing-xl) 0;
+  overflow: hidden;
+}
+
+/* Применяем анимацию к обертке слайдов Swiper */
+#partners-slider .swiper-wrapper {
+  animation: marquee 30s linear infinite;
+}
+
+/* При наведении на слайдер - ставим анимацию на паузу */
+#partners-slider:hover .swiper-wrapper {
+  animation-play-state: paused;
+}
+
+#partners-slider .swiper-slide {
+  height: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#partners-slider .swiper-slide img {
+  max-height: 6rem;
+  max-width: 15rem;
+  object-fit: contain; /* Сохраняет пропорции изображения */
+  transition: transform var(--transition-speed) ease;
+}
+
+#partners-slider .swiper-slide a:hover img {
+  transform: scale(1.05);
+}
+
+/* Анимация бесконечной прокрутки */
+@keyframes marquee {
+  from { transform: translateX(0%); }
+  to { transform: translateX(-50%); } /* Сдвигаем на половину, т.к. слайды дублируются */
+}
+
+
+/* ==========================================================================
+   6. ПОДВАЛ (FOOTER)
+   ========================================================================== */
+
+.footer {
+  background-color: var(--color-black);
+  color: var(--color-white);
+  padding: var(--spacing-xl) 6rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: var(--spacing-xl);
+}
+
+/* Левая часть: лого и соцсети */
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.logo {
+  font-size: 2.4rem;
+  font-weight: bold;
+  margin-bottom: var(--spacing-l);
+  color: var(--color-white);
+}
+
+.social-icons {
+  display: flex;
+  gap: var(--spacing-m);
+}
+
+.social-icon-wrapper {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  background-color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color var(--transition-speed) ease;
+}
+.social-icon-wrapper:hover {
+  background-color: #444;
+}
+
+.social-icon {
+  width: 2rem;
+  height: 2rem;
+  fill: var(--color-white);
+}
+
+/* Правая часть: колонки с ссылками */
+.footer-right {
+  display: flex;
+  gap: 6rem;
+  flex-wrap: wrap;
+}
+
+.footer-column h4 {
+  font-size: 1.6rem;
+  margin-bottom: 1.2rem;
+  font-weight: bold;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-column ul li {
+  margin-bottom: var(--spacing-xs);
+}
+
+.footer-column ul li a {
+  text-decoration: none;
+  color: #aaa;
+  font-size: 1.4rem;
+  transition: color var(--transition-speed) ease;
+}
+.footer-column ul li a:hover {
+  color: var(--color-white);
+}
+
+/* Адаптивность подвала */
+@media (max-width: 768px) {
+  .footer {
+    flex-direction: column;
+    padding: 3rem 2rem;
+  }
+  .footer-right {
+    flex-direction: column;
+    gap: 3rem;
+  }
+}
+
+
+/* ==========================================================================
+   7. ВСПЛЫВАЮЩИЕ ОКНА (POPUP)
+   ========================================================================== */
+
+.popup {
+  display: none; /* По умолчанию скрыто */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Оверлей */
+  z-index: 2000;
+  
+  /* Центрирование содержимого */
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-m);
+}
+
+/* Показываем окно, добавляя класс .show */
+.popup.show {
+  display: flex;
+}
+
+.popup-content {
+  max-width: 45rem;
+  width: 100%;
+  background: var(--color-white);
+  padding: var(--spacing-l);
+  border-radius: 8px;
+  position: relative;
+}
+
+.popup-close {
+  position: absolute;
+  top: var(--spacing-s);
+  right: var(--spacing-s);
+  cursor: pointer;
+  font-size: 2.4rem;
+  line-height: 1;
+  color: #aaa;
+  border: none;
+  background: none;
+}
+.popup-close:hover {
+  color: var(--color-text-main);
+}
+
+/* Форма в попапе */
+.connection-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-m);
+  text-align: center;
+}
+
+.form-title {
+  font-weight: bold;
+  font-size: 2.4rem;
+  margin: 0;
+}
+
+.form-subtitle {
+  color: var(--color-primary);
+  font-size: 1.6rem;
+  margin: -0.5rem 0 var(--spacing-s) 0;
+}
+
+.form-group {
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: var(--spacing-xs);
+  font-size: 1.4rem;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: var(--spacing-s);
+  border: 1px solid #ccc;
+  border-radius: var(--border-radius-small);
+  font-size: 1.6rem;
+}
+
+.form-row {
+  display: flex;
+  gap: var(--spacing-m);
+}
+.form-row > .form-group {
+  flex: 1; /* Поля в ряду занимают равное пространство */
+}
+
+.form-submit-btn {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  border: none;
+  padding: 1.2rem 2rem;
+  border-radius: var(--border-radius-small);
+  font-size: 1.8rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color var(--transition-speed) ease;
+  margin-top: var(--spacing-s);
+}
+.form-submit-btn:hover {
+  background-color: var(--color-primary-dark);
+}
+

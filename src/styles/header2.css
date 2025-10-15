@@ -1,0 +1,966 @@
+
+.top-bar {
+            background-color: #D3D3D3; /* Серый цвет фона */
+            display: flex; /* Используем flexbox для выравнивания */
+            justify-content: space-between; /* Ссылки слева и справа */
+            align-items: center; /* Выравнивание по центру вертикально */
+            padding: 0.625rem; /*10px;  Внутренние отступы для красоты */
+        }
+        
+        .left-links a {
+            		color: grey; /* Цвет текста для видимости на сером фоне */
+            		text-decoration: none; /* Убрать подчеркивание */
+        		}
+
+	 .left-links span {
+            			color: grey; /* Цвет для знака "|" */
+            
+        }
+        
+        .right-links a {
+            		color: #000000; /* Цвет текста */
+            		text-decoration: none; /* Убрать подчеркивание */
+        		}
+
+.header__container {
+  			background-color: white; /* Устанавливает белый фоновый цвет для элемента */
+  			width:  100%; /* Растягивает элемент на всю доступную ширину родительского контейнера */
+  			max-width: 100%; /* Ограничивает максимальную ширину элемента значением 100% (чтобы не выходил за границы) */
+			box-sizing: border-box;  /* Включает модель расчёта размеров, при которой padding и border входят в width/height, а не добавляются к ним */
+ 			display: flex;  /* Делает контейнер флексбоксом — позволяет гибко выравнивать и распределять дочерние элементы */
+  			align-items: center; /* Вертикально центрирует дочерние элементы по высоте внутри флекс-контейнера */
+  			padding: 0.5rem 1rem; /*8px 16px;  Задаёт внутренние отступы: 8px сверху и снизу, 16px слева и справа */
+  			justify-content: space-between; /* Распределяет дочерние элементы по горизонтали: первый прижат к левому краю, последний — к правому, остальные равномерно между ними */
+		}
+
+		.header__logo-img { 
+					width: 4rem; /*64px;  Устанавливает фиксированную ширину элемента*/
+					height: 4rem; /*64px;  Устанавливает фиксированную высоту элемента — 32 пикселя*/
+					/*vertical-align: middle;   Выравнивает элемент по вертикальной средней линии относительно соседних строчных*/
+					}
+
+		.header__search {
+  				flex: 0 0 auto;  /* НЕ растягиваемся */
+ 				width: clamp(15rem, 35vw, 22.5rem); /*clamp(240px, 35vw, 360px); компактная ширина: от 240 до 360 */ 
+  				display: flex; /* Делает контейнер флексбоксом — позволяет гибко выравнивать и распределять дочерние элементы */
+  				align-items: center; /* Вертикально центрирует дочерние элементы по высоте внутри флекс-контейнера */
+  				justify-content: center; /* Горизонтально центрирует дочерние элементы внутри flex-контейнера по главной оси*/
+				}
+
+		.sr-only {
+  				position: absolute;  /* Позиционирует элемент абсолютно */
+  				width: 0.0625rem; /*1px; Сделает элемент невидимым */
+  				height: 0.0625rem; /*1px;   Сделает элемент невидимым */
+  				padding: 0;  /* Убирает отступы */
+  				margin: -0.0625rem; /*-1px;  Сдвигает элемент за пределы видимой области */
+  				overflow: hidden;  /* Скрывает переполнение */
+  				clip: rect(0, 0, 0, 0);  /* Скрывает элемент для экранных читалок */
+  				white-space: nowrap;  /* Предотвращает перенос */
+  				border: 0;  /* Убирает границу */
+				}
+
+.header__search-wrapper {
+    display: flex;
+    align-items: center;
+    border: 1px solid #d0d5dd;
+    border-radius: 8px;
+    overflow: hidden; /* Чтобы скругление работало */
+    width: clamp(15rem, 35vw, 22.5rem); /*clamp(240px, 35vw, 360px);*/
+}
+
+		.header__search-input {
+    flex: 1;
+    border: none; /* Убираем рамку у самого инпута */
+    outline: none; /* Убираем обводку при фокусе */
+    padding: 0.5rem 0.75rem;  /*8px 12px;*/
+}
+.header__search-btn {
+    border: none; /* Убираем рамку у самой кнопки */
+    background: #fff;
+    padding: 0.5rem 0.75rem;  /*8px 12px;*/
+    cursor: pointer;
+    color: #a9a9a9; /*grey;*/
+}
+
+		.header__contact { white-space: nowrap; /*  Запрещает перенос текста на новую строку*/}
+
+		.header__phone {
+				font-family: Arial, sans-serif; /* Задаёт семейство шрифтов для текста */
+				font-style: normal; /* Устанавливает нормальное начертание шрифта */
+				font-weight: 600; /* Задаёт "жирность" шрифта */
+				color: inherit; /* Заставляет элемент наследовать цвет текста от своего родительского элемента */
+				text-decoration: none; /* Убирает подчёркивание */
+				}
+
+		@media (max-width: 768px) {
+  						.header__container {
+    									flex-wrap: wrap;  /* Позволяет элементам переноситься на новую строку */
+    									gap: 0.75rem; /*12px;   Добавляет промежутки между элементами */
+    									width: 100%;  /* Явно указываем, чтобы контейнер занимал всю ширину (хотя это уже по умолчанию) */
+  									}
+  
+  						.header__logo {  order: 1;  /* Устанавливает порядок элемента в Flexbox (первым) */}
+  						}
+
+.header {
+            background-color: #000000; /* Устанавливает сплошной чёрный цвет фона для элемента */
+            padding: 0.625rem; /*10px;  Задаёт внутренние отступы со всех сторон элемента */
+            position: relative; /* Устанавливает позиционирование элемента как "относительное" */
+            z-index: 1000;  /* Шапка поверх оверлея */
+        }
+
+	.header__menu-wrapper {
+				background-color: #000000; /* Устанавливает сплошной чёрный цвет фона для элемента */
+				}
+
+        .header__nav-list {
+            			display: flex; /* Превращает контейнер в flex-контейнер */
+            			list-style: none; /* Убирает маркеры у элементов списка */
+            			padding: 0; /* Обнуляет внутренние отступы контейнера со всех сторон.  */
+            			margin: 0; /* Обнуляет внешние отступы контейнера со всех сторон. */
+            			justify-content: center; /*  Распределяет flex-элементы по главной оси и центрирует их по центру контейнера.*/
+        			}
+
+        .header__nav-item {
+            			margin: 0 0.625rem; /*0 10px;  Отступы сверху и снизу 0, справа и слева 10 */
+            			position: relative;  /* Для позиционирования подменю */
+        			}
+
+        .header__nav-link {
+            			font-family: Arial, sans-serif; /* Основной шрифт — Arial, если Arial недоступен в системе пользователя — браузер возьмёт любой другой sans-serif (шрифт без засечек). */
+            			font-weight: normal; /* Устанавливает начертание шрифта как обычное */
+            			color: white;  /* Задаёт цвет текста */
+            			text-decoration: none;  /* Убирает подчёркивание и другие текстовые украшения. */
+            			padding: 0.0625rem 0.1875rem; /* 1px 3px;  Отступы сверху и снизу 1, справа и слева 3 */
+            			display: block; /* Превращает элемент (часто строчный, как <a>) в блочный. */
+        			}
+
+	.dropdown-icon {
+    	    		display: inline-block;  /* Делаем значок блочным внутри строки */
+            		margin-left: 0.3125rem; /*5px;  Отступ от текста */
+            		font-size: 0.8em;  /* Немного меньше основного шрифта */
+            		color: white;  /* Белый цвет, как у текста */
+			}
+
+        .header__submenu {
+            			display: none;  /* Превращает контейнер в flex-контейнер */
+            			position: absolute; /* Чтобы подменю “всплывало” поверх других элементов и не влияло на расположение соседних блоков. */
+            			top: 100%;  /* Располагает верхнюю границу подменю ровно под нижней границей родительского элемента. */
+            			left: 0; /* Прижимает левый край подменю к левому краю родительского элемента. */
+            			list-style: none; /* Убирает маркеры списка  */
+            			padding: 0.625rem; /*10px; Добавляет внутренний отступ 10px со всех сторон внутри контейнера подменю. */
+            			margin: 0; /* Обнуляет внешние отступы. */
+            			box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Добавляет тень вокруг подменю: 0 — смещение по горизонтали, 2px — смещение по вертикали (тень падает вниз), 5px — размытие, rgba(0,0,0,0.2) — чёрный цвет с прозрачностью 20%. */
+            			z-index: 1001;  /* Выше оверлея */
+        			}
+
+        .header__submenu li {
+            			margin: 0.3125rem 0; /*5px 0; Отступы сверху и снизу 5, справа и слева 0 */
+        			}
+
+        .header__submenu a {
+            			color: white; /* Белый цвет, как у текста */
+            			text-decoration: none;  /* Убирает подчёркивание и другие текстовые украшения. */
+            			font-family: Arial, sans-serif;  /* Основной шрифт — Arial, если Arial недоступен в системе пользователя — браузер возьмёт любой другой sans-serif (шрифт без засечек). */
+	    			padding: 0.0625rem 0.1875rem; /*1px 3px; Отступы сверху и снизу 1, справа и слева 3 */
+	    			white-space: nowrap; /*  Запрещает перенос текста на новую строку*/
+        			}
+
+	
+
+	.dropdown-icon::after {
+            			content: '▾';  /* Unicode для стрелки вниз. Можно изменить на '▶' или другой символ */
+				}
+
+        /* Показ подменю на десктопе при наведении */
+        @media (min-width: 769px) {  /* Десктоп */
+            				.header__nav-item--submenu:hover .header__submenu {
+                										display: block;}
+            				.header__nav-item--submenu:hover + .header__overlay {
+                										display: block;}
+        				}
+
+        .burger-menu {
+            		display: none; /* Полностью скрывает элемент из потока документа */
+            		position: absolute; /* Чтобы подменю “всплывало” поверх других элементов и не влияло на расположение соседних блоков. */
+            		top: 1rem; /*15px;  Отодвигает верхнюю границу элемента на 15 пикселей вниз от верхнего края родительского позиционированного контейнера. */
+            		right: 1rem; /*15px Отодвигает правую границу элемента на 15 пикселей влево от правого края родительского контейнера. */
+            		cursor: pointer; /* Меняет курсор мыши на "палец" (указатель) при наведении на элемент. */
+            		z-index: 1000; /* Чтобы элемент всегда отображался поверх других слоёв */
+        		}
+
+        .burger-menu span {
+            			display: block; /* Превращает элемент в блочный.  */
+            			width: 1.5rem; /*25px;  Задаёт ширину элемента — 25 пикселей. */
+            			height: 0.1875rem; /*3px;  Задаёт высоту элемента — 3 пикселя */
+            			background-color: white; /* Задаёт цвет фона элемента */
+           			margin: 0.3125rem 0; /*5px 0;  Отступы сверху и снизу 5, справа и слева 0 */
+            			transition: all 0.3s ease; /* Добавляет плавную анимацию продолжительностью 0.3 секунды ко всем изменяемым свойствам элемента  */
+        			}
+
+        .header__overlay {
+            			display: none; /* Полностью скрывает элемент из потока документа */
+            			position: fixed; /* Фиксирует элемент относительно окна браузера — он не прокручивается вместе со страницей. */
+            			top: 0; /* Прижимает верхнюю границу элемента к верхнему краю окна браузера. */
+            			left: 0; /* Прижимает левую границу элемента к левому краю окна браузера. */
+            			width: 100%; /* Растягивает элемент на всю ширину окна браузера. */
+           			height: 100%;  /* Растягивает элемент на всю высоту окна браузера. */
+            			background-color: rgba(0, 0, 0, 0.5); /* Задаёт полупрозрачный чёрный фон. */
+            			z-index: 999; /* Чтобы элемент всегда отображался поверх других слоёв */
+        			}
+
+        @media (max-width: 768px) {  /* Мобильные */
+            				.header__nav-list {
+                						display: none; /* По умолчанию скрываем всё меню на мобильных устройствах — оно будет показываться только при активации */
+                						flex-direction: column; /* Если меню станет видимым, его элементы будут располагаться вертикально друг под другом */
+                						position: absolute;  /* Позиционируем меню абсолютно — оно будет позиционироваться относительно ближайшего позиционированного родителя */
+                						top: 3rem; /*50px;  Меню появляется на 50 пикселей ниже верхнего края родительского контейнера */
+                						left: 0; /* Меню прижимается к левому краю экрана/контейнера */
+                						width: 100%; /*  Меню занимает всю ширину экрана */
+                						background-color: #000000;  /* Задаём чёрный фон меню  */
+                						z-index: 1001; /* Устанавливаем высокий z-index, чтобы меню отображалось поверх всех остальных элементов на странице */
+            							}
+
+            				.header__nav-list.active {
+                						display: flex;  /* Превращает контейнер в flex-контейнер */
+            							}
+
+            				.header__nav-item {
+                						margin: 0.625rem 0; /*10px 0; Отступы сверху и снизу 10, справа и слева 0 */
+                						width: 100%;  /* Каждый пункт меню занимает всю ширину контейнера  */
+                						text-align: center; /* Текст внутри пунктов меню центрируется по горизонтали */
+            							}
+
+            				.header__submenu {
+                						position: static;  /* Подменю внутри меню */
+                						box-shadow: none;  /* Убираем тень */
+            							}
+
+            				.burger-menu {
+                						display: block; /* Превращает элемент в блочный.  */
+            							}
+
+            				/* Подменю на мобильных по клику */
+            				.header__nav-item--submenu .header__submenu {
+                						display: none;  /* Скрыто до клика */
+            							}
+        				}
+
+body {
+            background-color: #f0f0f0;  /* Серый фон */
+            margin: 0; /* Убирает внешние отступы */
+            padding: 0; /* Убирает внутренние отступы  */
+            font-family: Arial, sans-serif; /* Основной шрифт — Arial, если Arial недоступен в системе пользователя — браузер возьмёт любой другой sans-serif (шрифт без засечек). */
+        }
+
+        .page-path {
+            		padding: 0.625rem; /*10px; Отступы по 10 с каждой стороны */
+            		color: #a9a9a9;  /* Устанавливает цвет текста внутри элемента как серый. */
+            		font-size: 0.625rem; /*10px;  Задаёт размер шрифта */
+	    		font-weight: bolder; /* Делает начертание шрифта жирнее, чем у родительского элемента. */
+        		}
+
+	.page-path a {
+	     		text-decoration: none; /* Убирает подчёркивание и другие текстовые украшения. */
+	     		color: #1565c0; /* Устанавливает цвет текста */
+			}
+
+	.main-title {
+            		text-align: center; /* Текст внутри пунктов меню центрируется по горизонтали */
+            		font-size: 1.875rem; /*30px;  Задаёт размер шрифта */
+            		margin: 1.25rem 0; /*20px 0; Отступы сверху и снизу 20, справа и слева 0 */
+        		}
+
+	.selection-container {
+            		display: flex; /* Превращает контейнер в flex-контейнер */
+            		justify-content: center; /*  Распределяет flex-элементы по главной оси и центрирует их по центру контейнера.*/
+            		gap: 1.25rem; /*20px;  Задаёт расстояние между дочерними элементами внутри контейнера */
+            		margin: 1.25rem 0; /*20px 0; Отступы сверху и снизу 20, справа и слева 0 */
+        		}
+
+        .selection-box {
+            		width: 10rem; /*165px; Задает ширину контейнера */
+            		background-color: white; /* Задает фон контейнера */
+            		padding: 0.3125rem; /*5px; Устанавливает внутренние отступы */
+            		border: 1px solid #ccc; /* Задает толщину и цвет границы */
+            		border-radius: 5px; /* Задает скруглённые углы радиусом 5px */
+	    		position: relative; /* Устанавливает контекст позиционирования */
+        		}
+
+	.selection-box label {
+            		display: block;  /* Сделать название блочным элементом */
+            		margin-bottom: 0.3125rem; /*5px;  Задает отступ снизу*/
+            		color: #a9a9a9;  /* Цвет текста, как у пути */
+            		font-size: 0.75rem; /*12px; Чёткий размер шрифта */
+        		}
+
+        .selection-box select {
+            		padding: 0.5rem; /*8px; Устанавливает внутренние отступы */
+            		font-size: 0.875rem; /*14px; Чёткий размер шрифта */
+            		background-color: transparent;  /* Убрать фон select */
+            		border: none;  /* Убрать границы select */
+                        outline: none;  /* Убрать контур при фокусе */
+            		width: 80%;  /* Полная ширина */
+            		appearance: none;  /* Убрать стандартные стрелки, если нужно (можно добавить кастомные) */
+            		-webkit-appearance: none;  /* Для Safari */
+        		}
+
+	.selection-box::after {
+            		content: '▼';  /* Значок стрелки вниз */
+            		position: absolute; /* Позиционирует стрелку абсолютно */
+            		top: 50%; /* Смещает верхнюю границу стрелки на 50% высоты родительского контейнера */
+            		right: 0.625rem; /*10px;   Прижимает стрелку к правому краю контейнера, отступив 10 пикселей от правого края */
+            		transform: translateY(-50%); /* Сдвигает стрелку вверх на 50% её собственной высоты */
+            		color: #333;  /* Цвет, как у текста */
+            		font-size: 0.75rem; /* 12px; Размер значка */
+              		}
+
+	.selection-container span.container-arrow {
+	     		display: flex; /* Превращает контейнер в flex-контейнер */
+	     		align-items: center; /* Центрирует дочерние элементы */
+             		text-align: center; /* Центрирует текст по горизонтали */
+             		font-size: 1rem; /*16px; Размер шрифта */
+             		font-weight: bold; /* Жирный шрифт */
+             		margin: 0 0.3125rem; /*0 5px;  Отступы вокруг */
+			}
+
+.full-width-section {
+    width: 100%;
+    padding: 3.75rem 0; /*60px 0; Вертикальные отступы, чтобы секции не слипались */
+}
+
+/*.slider-wrapper {
+    width: 100%;
+    
+    overflow-x: hidden; /* <-- Ключевое свойство здесь! */
+overflow-y: visible;
+    position: relative;
+padding-top: 1.25rem; /*20px; Отступ сверху */
+    padding-bottom: 1.25rem; /* 20px; */ 
+}*/
+
+
+#tariff-slider {
+    padding: 0 1.25rem; /* 0 20px;*/
+    box-sizing: border-box;
+}
+    /*  .tariff-slider {
+display: flex;
+    
+    scroll-behavior: smooth;
+    position: relative;
+    gap: 3.75rem; /*60px;*/
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+} */
+
+         .tariff-card {
+    background-color: #fff; /* Белый фон */
+    border: 1px solid #ddd; /* Серая рамка */
+    border-radius: 10px;    /* Скругление углов */
+    text-align: center;     /* Выравнивание текста по центру */
+    
+    /* Flex-контейнер, чтобы кнопка прижалась к низу */
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    
+    /* Плавный переход для тени при наведении */
+    transition: box-shadow 0.3s ease;
+}
+
+.tariff-slider .tariff-card:hover {
+
+z-index: 10;
+box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+.tariff-card.tariff-card--hit {
+			border: 3px solid #e63946; /* Ярко-красный цвет */
+			position: relative; /* Чтобы позиционировать бейдж внутри */
+		}
+
+.badge-hit {
+			position: absolute; /* позволяет "наложить" бейдж поверх других элементов, не влияя на поток документа */
+			background-color: #e63946; /* Красный фон */
+			color: white; /* Задает цвет текста */
+			font-weight: bold;  /* Жирное начертание */
+			font-size: 0.75rem; /*12px;  Задает размер шрифта */
+			padding: 0.3125rem 0.625rem; /*5px 10px;  Задает внутренние отступы */
+			border-radius: 4px; /* Скруглённые углы радиусом 4px */
+			z-index: 2;  /* Устанавливает порядок наложения — бейдж будет отображаться поверх других элементов внутри карточки (если у них z-index меньше 2) */
+			text-transform: uppercase; /* Преобразует текст в ПРОПИСНЫЕ БУКВЫ */
+			box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Добавляет лёгкую тень под бейджем */
+		}
+
+.tariff-card__content {
+			display: flex; /* Превращает контейнер в flex-контейнер */
+			flex-direction: column; /* Устанавливает направление расположения дочерних элементов */
+			gap: 0.375rem; /*6px;  Задаёт промежуток в 6 пикселей между каждыми двумя соседними дочерними элементами */
+		}
+
+.tariff-card__title {
+			font-weight: bold;  /* Делает текст жирным */
+			font-size: 22px; /*22px;  Устанавливает размер шрифта */
+			margin: 10px 0 0 10px; /*10px 0 0 10px;  Отступ снизу */
+		/* Ограничиваем до 2 строк */
+			display: -webkit-box;
+			-webkit-line-clamp: 2;  /* Ограничивает количество видимых строк текста до 2 */
+			-webkit-box-orient: vertical; /* Указывает, что текст должен располагаться вертикально */
+			overflow: hidden; /* Скрывает всё, что выходит за пределы контейнера */
+			text-overflow: ellipsis; /* Добавляет многоточие (...) в конце последней строки, если текст обрезан */
+	/* Фиксируем высоту под 2 строки */
+			line-height: 1.2; /* Устанавливает межстрочный интервал */
+			height: calc(1.2em * 2); /* Фиксирует высоту элемента ровно под 2 строки текста */ 
+		}
+
+.tariff-card__desc {
+			display: -webkit-box;
+			-webkit-line-clamp: 7; /* Ограничивает отображение текста ровно 7 строками */
+			-webkit-box-orient: vertical; /* Указывает, что текст должен располагаться вертикально */
+			overflow: hidden; /* скрывает всё, что выходит за пределы контейнера */
+			text-overflow: ellipsis; /* если хочешь многоточие */
+		line-height: 1.2; /* Задаёт межстрочный интервал */
+			min-height: calc(1.2em * 5); /* Фиксирует минимальную высоту контейнера ровно под 5 строк текста */
+			margin: 0; /* Обнуляет внешние отступы */
+			font-size: 14px; /*14px;  Устанавливает размер шрифта */
+		font-family: Arial, sans-serif;
+		}
+
+.tariff-card.active {
+z-index: 10;
+
+}
+
+	.line { 
+			display: block; /* Блочные элементы располагаются один над другим, вертикально */
+			margin: 0.375rem 0; /*6px 0; Задает внешние отступы */
+			}
+
+        .line--price { 
+			color: #db1414; /* Задает цвет текста */
+			font-size: 1.25rem; /*20px;  Задает размер шрифта */
+			font-weight: bold; /* Устанавливает жирное начертание */
+			}
+
+        .line--equipment-title {
+			opacity:.7; /* Задает прозрачность 70% */
+			color: #a9a9a9; /*  Задает цвет текста */
+			}
+
+	.connect-btn {
+  			display: block; /* Блочные элементы располагаются один над другим, вертикально */
+			width: 70%; /* Задает ширину кнопки */
+  			margin: 1.25rem auto; /*20px auto;  Задает внешние отступы */
+  			padding: 0.625rem 0.625rem; /*10px 10px;  Здает внутренние отступы */
+  			background: #1565c0; /* Задает цвет фона */
+  			color: #fff; /* Задает цвет текста */
+  			border: none; /* Убирает стандартную рамку браузера */
+  			border-radius: 10px; /* Скругляет углы кнопки радиусом 10px  */
+  			text-align: center; /* Выравнивает текст по центру */
+  			font-size: 1rem; /*16px;  Задает размер шрифта */
+  			font-weight: 600; /* Задает полужирное начертание */
+  			cursor: pointer; /* Меняет курсор на "руку" при наведении */
+  			box-sizing: border-box; /* Гарантирует, что padding и border включаются в общую ширину и высоту элемента */
+  			margin-top: auto; /* Центрирует кнопку по оси скрещения  */  			
+  			}
+
+			.connect-btn:hover { 
+					background: #0d47a1; /* При наведении курсора мыши фон кнопки меняется на более тёмный оттенок синего (#0d47a1) */
+					}
+
+			.connect-btn:active { 
+					transform: translateY(1px); /* Когда кнопка нажата (пальцем или мышью), она сдвигается на 1 пиксель ВНИЗ */
+					}
+
+	.popup {
+            		display: none; /* По умолчанию окно скрыто */
+            		position: fixed; /* Фиксированное позиционирование — окно не будет двигаться при прокрутке страницы, всегда остаётся на экране */
+            		top: 50%;  /* Верхний край окна располагается на 50% высоты видмой области браузера */
+            		left: 50%; /* Левый край окна располагается на 50% ширины видимой области браузера */
+            		transform: translate(-50%, -50%); /* Сдвигает окно на 50% его собственной ширины влево и на 50% высоты вверх — тем самым центрируя его посередине экрана */
+            		background-color: white; /* Задаёт белый фон внутри окна */
+            		padding: 1.25rem; /*20px;  Внутренние отступы 20px со всех сторон */
+            		border: 1px solid #ccc; /* Тонкая серая рамка вокруг окна для визуального выделения */
+            		z-index: 2000; /* Высокий z-index гарантирует, что окно будет поверх всех других элементов на странице */
+            		box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Тень вокруг окна: смещение 0 по X и Y, размытие 10px, цвет — чёрный с прозрачностью 50%. Добавляет объём и выделяет окно */
+        		}
+
+.popup-content {
+    /* Можно немного увеличить ширину для удобства */
+    max-width: 28.125rem; /*450px;*/ 
+    background: white;
+    padding: 1.25rem; /*20px;*/
+    border-radius: 8px;
+    
+}
+
+.connection-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /*15px;  Расстояние между элементами формы */
+    text-align: center; /* Центрируем заголовки */
+}
+
+.form-title {
+    font-weight: bold;
+    font-size: 1.5em; /* Увеличим размер */
+    margin: 0;
+}
+
+.form-subtitle {
+    color: #007bff; /* Синий цвет, можете поменять на свой */
+    font-size: 1em;
+    margin: -0.3125rem 0 0.625rem 0; /*-5px 0 10px 0;  Придвинем ближе к заголовку */
+}
+
+.form-group {
+    text-align: left; /* Выравниваем содержимое полей по левому краю */
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 0.3125rem; /*5px;*/
+    font-size: 0.9em;
+    color: #555;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 0.625rem; /*10px;*/
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Важно для правильного расчета ширины */
+    font-size: 1em;
+}
+
+.form-submit-btn {
+    background-color: #007bff; /* Синий фон */
+    color: white; /* Белый текст */
+    border: none;
+    padding: 0.75rem 1.25rem; /*12px 20px;*/
+    border-radius: 5px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 0.625rem; /*10px;  Отступ сверху */
+}
+
+.form-submit-btn:hover {
+    background-color: #0056b3; /* Более темный синий при наведении */
+}
+
+        .popup-close {
+            		position: absolute; /* Абсолютное позиционирование относительно ближайшего позиционированного родителя (в данном случае — .popup) */
+            		top: 0.625rem; /*10px; Отступ сверху — 10px от верхнего края родительского окна */
+            		right: 0.625rem; /*10px; Отступ справа — 10px от правого края родительского окна
+            		cursor: pointer; /* Меняет курсор мыши на "указатель руки" при наведении */
+        		}
+
+.form-row {
+    display: flex;
+    gap: 1rem; /*15px;  Расстояние между полями */
+}
+
+.popup.show {
+    display: flex; /* Когда нужно показать, возвращаем его */
+}
+
+
+
+/* --- Фикс для слайдера тарифов Swiper --- */
+#tariff-slider .swiper-slide {
+    width: auto; /* Это ключевое правило! */
+}
+
+
+.popup-buttons {
+    display: flex;
+    justify-content: center; /* Расположить по центру */
+    gap: 1rem; /*15px;  Расстояние между кнопками */
+    margin-top: 1.25rem; /*20px;*/
+}
+
+/* Общие стили для кнопок в pop-up */
+.popup-buttons button {
+    padding: 0.625rem 1.25rem; /*10px 20px;*/
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem; /*16px;*/
+}
+
+.popup-buttons .btn-confirm {
+    background-color: #28a745; /* Зеленый */
+    color: white;
+    border-color: #28a745;
+}
+
+.popup-buttons .btn-cancel {
+    background-color: #dc3545; /* Красный */
+    color: white;
+    border-color: #dc3545;
+}
+
+.container {
+    width: 100%;
+    max-width: 75rem; /*1200px;  Это максимальная ширина вашего контента */
+    margin: 0 auto;    /* Это центрирует контейнер */
+    padding: 0 1rem; /*0 15px;    Небольшие отступы по бокам, чтобы текст не прилипал к краям на мобильных */
+    box-sizing: border-box;
+}
+	/*.slider-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem; /*15px;*/
+    margin-top: 1.25rem; /* 20px;*/
+}*/
+
+/*.slider-btn {
+    background: #f0f0f0;
+    border: none;
+    width: 2.5rem; /*40px;*/
+    height: 2.5rem; /*40px;*/
+    border-radius: 50%;
+    font-size: 1.125rem; /*18px;*/
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}*/
+
+/*.slider-dots {
+    display: flex;
+    gap: 0.5rem; /*8px;*/
+}*/
+
+/* Стили для нового контейнера блока тарифов */
+.tariffs-block {
+    position: relative; /* Это база для абсолютного позиционирования дочерних элементов */
+    /*padding-bottom: 60px; */ /* Создаем пустое пространство внизу для кнопок и точек. Можете подобрать значение. */
+}
+
+/* Стили для элементов управления, чтобы они встали в это пустое пространство */
+/*.slider-controls {
+    position: absolute; /* Позиционируем относительно .tariffs-block */
+    bottom: 0.625rem; /*10px;  Располагаем внизу с отступом 10px */
+    left: 50%;          /* Центрируем по горизонтали */
+    transform: translateX(-50%); /* Точная центровка */
+    z-index: 10;        /* Убедимся, что они поверх других элементов */
+    
+    /* Эти стили у вас уже могут быть, но проверьте */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem; /*15px;*/
+}*/
+#tariff-slider .swiper-button-next::after, #tariff-slider .swiper-button-prev::after {
+    display: none;
+}
+#tariff-slider .swiper-button-prev,
+#tariff-slider .swiper-button-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+
+    /* Ваши кастомные стили */
+    width: 2.75rem; /*44px;*/
+    height: 2.75rem; /*44px;*/
+    background-color: white;
+    border: 1px solid #eee;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+    font-size: 1.5rem; /*24px;*/
+    font-weight: bold;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+#tariff-slider .swiper-button-prev:hover,
+#tariff-slider .swiper-button-next:hover {
+    background-color: #f0f0f0;
+}
+#tariff-slider .swiper-button-disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+/* 3. Индивидуальное позиционирование для каждой кнопки */
+#tariff-slider .swiper-button-prev {
+    left: 0.625rem; /*10px;*/
+}
+
+#tariff-slider .swiper-button-next {
+    right: 0.625rem; /*10px;*/
+}
+/*.dot {
+    width: 0.625rem; /*10px;*/
+    height: 0.625rem; /*10px;*/
+    border-radius: 50%;
+    background: #ccc;
+    cursor: pointer;
+    transition: background 0.3s;
+}*/
+
+/*.dot.active {
+    background: #1565c0;
+}*/
+
+.speed-check-container {
+    			display: flex; /* Превращает контейнер в flex-контейнер */
+    			align-items: center;  /* Вертикально центрирует дочерние элементы по оси Y */
+   			gap: 0.75rem; /*12px;  Задаёт равный промежуток в 12px между всеми дочерними элементами контейнера */
+    			justify-content: center; /* Горизонтально центрирует содержимое контейнера по оси X */
+    			margin: 1.25rem auto 0; /*20px auto 0;  Задает внешние отступы */
+    			padding: 0 1.25rem; /*0 20px;  Задает внутренние отступы */
+    			flex-wrap: wrap; /* Разрешает перенос на новую строку, если мало места */
+    			text-align: center; /* Вырвнивает текст по центру */
+			}
+
+	.speed-check-text {
+    			font-size: 1.125rem; /*18px;  Задает размер шрифта */
+    			font-weight: 500; /*  /* Полужирное начертание */    
+    			white-space: nowrap; /* Запрещает перенос текста на новую строку */
+    			line-height: 1.4rem; /* Задает межстрочный интервал */
+    			max-width: 100%;  /* Ограничивает ширину текста, чтобы он не выходил за пределы родительского контейнера */
+    			text-align: center; /* Центрирует текст внутри своего блока */
+			}
+
+	.speed-check-text__blue {
+    			color: #1565c0; /* Задает цвет шрифта */
+			}
+
+	.speed-check-text__red {
+    			color: red; /* Задает цвет шрифта */
+    			font-weight: bold; /* Жирное начертание */
+			}    
+    
+	.speed-check-btn {
+     			background-color: red; /* Задает цвет фона */
+    			color: white;  /* Задает цвет текста */
+    			border: none; /*  Убирает стандартную рамку браузера */
+    			padding: 0.5rem 1rem; /*8px 16px; Задает внутренние отступы */
+    			border-radius: 4px; /* Скругляет углы радиусом 4px */
+    			font-size: 1rem; /*16px;  Задает размер шрифта */
+    			cursor: pointer; /* Меняет курсор на "руку" при наведении */
+    			white-space: nowrap; /* Запрещает перенос текста кнопки */
+    			align-self: center; /* Центрирует кнопку по оси скрещения */
+    			text-decoration: none; /* Убирает подчеркивание */
+			}
+
+			.speed-check-btn:hover {
+    						background-color: #0056b3; /* Задает цвет фона */
+						}
+
+	
+.partners-slider-wrapper {
+    		width: 100vw;
+left: 50%;
+transform: translateX(-50%);
+overflow: hidden; /* Скрывает всё, что выходит за границы обёртки */
+    		position: relative; /* Устанавливает контекст позиционирования для возможных абсолютных элементов внутри */
+background-color: white; padding: 2.5rem 0; /*40px 0;*/
+		}
+
+/*.partners-slider {
+   		width: 100%; /* Устанавливает ширинуу контейнера */
+    		overflow: hidden; /* Дополнительная защита от выхода содержимого за границы */
+    		white-space: nowrap; /* Запрещает перенос элементов на новую строку  */
+    		box-sizing: border-box; /* Включает стандартную модель расчёта размеров: padding и border входят в width/height */
+		}*/
+
+	/*.slide-track {
+    			display: flex; /* Превращает контейнер в flex-контейнер */
+    			align-items: center; /* Вертикально центрирует слайды */
+    			animation: scroll 35s linear infinite; /* Запускет бесконечную анимацию  5 слайдов × 7 сек = 35 сек */
+			}*/
+
+	/*.slide {
+    			display: inline-block; /* Позволяет элементу вести себя как строчный, но принимать размеры (width/height) */
+    			padding: 0 1.25rem; /* 0 20px;  Задает внутренние отступы */
+    			height: 6.25rem; /*100px;  Задает высоту */
+    			line-height: 6.25rem; /*100px;  Центрирует inline-элементы (например, <img> или текст) по вертикали внутри слайда */
+    			white-space: normal; /* Сбрасывает nowrap от родителя */
+			}*/
+
+	.slide img {
+    			max-height: 3.75rem; /*60px;  Ограничивает максимальную высоту изображения */
+    			max-width: 100%; /* Ограничивает максимальную ширину изображения */
+    			transition: transform 0.3s ease; /* Плавное изменение трансформаций (например, scale) за 0.3 секунды */
+			}
+
+			.slide a:hover img {
+    					transform: scale(1.05); /* При наведении на ссылку (<a>) — изображение увеличивается на 5% */
+					}
+
+			/* Анимация прокрутки
+			@keyframes scroll {
+    					0% {
+        					transform: translateX(0); /* Начальное положение */
+    						}
+    					100% {
+        					transform: translateX(calc(-100% / 2)); /* Прокручиваем на половину ширины трека (т.к. контент продублирован) */
+    						}
+					} */
+
+/* ================================================== */
+/*     ФИНАЛЬНЫЕ СТИЛИ ДЛЯ СЛАЙДЕРА ПАРТНЕРОВ (CSS-анимация)     */
+/* ================================================== */
+
+/* Главная обертка. Скрываем все, что выходит за ее пределы. */
+.partners-slider-wrapper {
+    overflow: hidden;
+}
+
+/* Применяем анимацию к обертке слайдов, которую создал Swiper */
+#partners-slider .swiper-wrapper {
+    /* Название анимации, продолжительность, линейная скорость, бесконечность */
+    animation: marquee 30s linear infinite;
+}
+
+/* При наведении на весь слайдер - ставим анимацию на паузу */
+#partners-slider:hover .swiper-wrapper {
+    animation-play-state: paused;
+}
+
+/* Сами слайды */
+#partners-slider .swiper-slide {
+    height: 6.25rem; /*100px;*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+#partners-slider .swiper-slide img {
+    max-height: 3.75rem; /*60px;*/
+    max-width: 9.375rem; /*150px;*/
+    object-fit: contain;
+}
+
+/* Определение самой анимации */
+@keyframes marquee {
+    /* В начале анимации сдвига нет */
+    from {
+        transform: translateX(0%);
+    }
+    /* В конце анимации сдвигаем ленту влево на 50% ее длины */
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+
+.footer {
+      	background-color: #000; /* Задает фон */
+      	color: #fff; /* Задает цвет текста */
+      	padding: 2.5rem 3.75rem; /*40px 60px;  Задает внутренние отступы */
+      	display: flex; /* Превращает контейнер в flex-контейнер */
+      	justify-content: space-between; /* Распределяет дочерние элементы по горизонтали */
+      	align-items: flex-start; /* Выравнивает все дочерние элементы по верхнему краю */
+      	flex-wrap: wrap; /* Разрешает перенос дочерних элементов на новую строку */
+      	gap: 2.5rem; /*40px;  Задаёт одинаковый промежуток между всеми дочерними элементами по горизонтали и вертикали */
+    	}
+
+    /* Левая часть — логотип и соцсети */
+    .footer-left {
+      		display: flex; /* Превращает контейнер в flex-контейнер */
+      		flex-direction: column; /* Направление потока — сверху вниз (колонка), а не строка */
+      		align-items: flex-start; /* Выравнивает содержимое по левому краю (началу оси) */
+    		}
+
+    .logo {
+      		font-size: 1.5rem; /*24px;  Задает размер текста */
+      		font-weight: bold; /* Задает жирное наертание */
+      		margin-bottom: 1.25rem; /*20px;  Задает отступ снизу */
+      		color: #fff; /* Задает цвет */
+    		}
+
+    .social-icons {
+      		display: flex;  /* Превращает контейнер в flex-контейнер */
+      		gap: 1rem; /*15px;  Задает промежуток между иконками */
+    		}
+
+    .social-icon-wrapper {
+      		width: 2.5rem; /*40px;  Задает ширину */
+      		height: 2.5rem; /*40px;   Задает высоту */
+      		border-radius: 50%; /* Превращает в круг */
+      		background-color: #333; /* Задает фон */
+      		display: flex; /* Превращает контейнер в flex-контейнер */
+      		align-items: center;   /* Центрирует иконку по вертикали */
+      		justify-content: center;  /* Центрирует иконку по горизонтали */
+      		transition: background-color 0.3s ease; /* Плавное изменение фона при наведении */
+    		}
+
+    		.social-icon-wrapper:hover {
+      					background-color: #444; /* Задает цвет фона */
+    					}
+
+    .social-icon {
+      		width: 1.25rem; /*20px;  Задает ширину */
+      		height: 1.25rem; /*20px;  Задает высоту */
+      		fill: #fff; /* Задает цвет залики */
+      		transition: fill 0.3s ease; /* Плавное изменение цвета заливки при наведении — синхронно с изменением фона обёртки */ 
+    		}
+
+    		.social-icon-wrapper:hover .social-icon {
+      					fill: #A9A9A9; /* При наведении на обёртку — иконка становится серой */
+    					}
+
+    /* Правая часть — меню */
+    .footer-right {
+      		display: flex; /* Превращает контейнер в flex-контейнер */
+      		gap: 3.75rem; /*60px;  Задает горизонтальный промежуток между колонками */
+    		}
+
+    .footer-column h4 {
+      		color: #fff; /* Задает цвет */
+      		font-size: 1rem; /*16px;  Задает размер шрифта */
+      		margin-bottom: 0.75rem; /*12px;  Задает отступ снизу */
+      		font-weight: bold; /* Устанавливает жирное начертание */
+    		}
+
+    .footer-column ul {
+      		list-style: none; /* Убирает стандартные маркеры списка */
+    		}
+
+    .footer-column ul li {
+      		margin-bottom: 0.5rem; /*8px;  Вертикальный отступ между пунктами меню  */
+    		}
+
+    .footer-column ul li a {
+      		text-decoration: none; /* Убирает подчеркивание */
+      		color: #aaa; /* серый для подразделов */
+      		font-size: 0.875rem; /*14px;  Устанавливает размер шрифта */
+      		transition: color 0.3s ease; /* Задает плавное изменение цвета при наведении */
+    		}
+
+    		.footer-column ul li a:hover {
+      					color: #fff; /* Задает цвет */
+    					}
+
+    /* Адаптивность */
+    @media (max-width: 768px) {
+      				.footer {
+        				flex-direction: column;  /* Меняет направление главного контейнера с row на column — все дочерние блоки (левая часть, правая часть) теперь располагаются вертикально */
+        				align-items: stretch; /* Растягивает все колонки по ширине контейнера — чтобы занимали всю доступную ширину экрана */
+        				padding: 1.875rem 1.25rem; /*30px 20px;  Уменьшает внутренние отступы для экономии места на маленьких экранах: сверху/снизу — 30px (было 40px), слева/справа — 20px (было 60px) */
+      					}
+
+      				.footer-right {
+        				flex-direction: column; /* Внутри правой части — колонки меню тоже становятся вертикальными (одна под другой) */
+        				gap: 1.875rem; /*30px;  Уменьшает расстояние между колонками до 30px (было 60px) — оптимизация под мобильный экран */
+      					}
+				}
+
+
+
+
+        

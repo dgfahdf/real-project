@@ -1,0 +1,887 @@
+/* ==========================================================================
+   1. ИМПОРТ МОДУЛЕЙ И ГЛОБАЛЬНЫЕ СТИЛИ
+   ========================================================================== */
+
+// Используем современное правило @use для импорта переменных.
+// `as *` делает переменные доступными глобально в этом файле, как при старом @import.
+@use 'variables' as *;
+@use 'mixins' as *;
+@use 'base';
+
+
+/* ==========================================================================
+   2. ШАПКА (HEADER) - MOBILE FIRST
+   ========================================================================== */
+
+/* --- Верхняя серая полоса --- */
+.top-bar {
+  // Скрываем на мобильных для экономии места
+  display: none;
+}
+
+/* --- Основной блок шапки --- */
+.header {
+  background-color: $color-black;
+  position: relative;
+  z-index: 1000;
+}
+
+.header__container {
+  background-color: $color-white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $spacing-xs $spacing-s;
+  gap: $spacing-m;
+  flex-wrap: wrap; // По умолчанию элементы могут переноситься
+}
+
+.header__logo {
+  order: 1; // Логотип слева
+}
+
+.header__logo-img {
+  width: 5rem; // Чуть меньше на мобильных
+  height: 5rem;
+}
+
+.header__contact {
+  order: 2; // Контакты справа
+  white-space: nowrap;
+}
+
+.header__phone {
+  font-style: normal;
+  font-weight: 600;
+  color: inherit;
+  text-decoration: none;
+}
+
+.header__search {
+  order: 3; // Поиск на всю ширину под лого и контактами
+  width: 100%;
+}
+
+.header__search-wrapper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  overflow: hidden;
+  border: 2px solid $color-border;
+  border-radius: 8px;
+  transition: border-color $transition-speed ease;
+
+  &:focus-within {
+    border-color: $color-primary;
+  }
+}
+
+.header__search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 0.8rem 1.2rem;
+  background-color: transparent;
+  font-size: 1.4rem;
+}
+
+.header__search-btn {
+  border: none;
+  background: transparent;
+  padding: 0.8rem 1.2rem;
+  cursor: pointer;
+  color: $color-text-light;
+}
+.icon {
+  width: 1.6rem;
+  height: 1.6rem;
+  display: inline-block;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor; /* Наследовать цвет заливки от родителя */
+}
+
+/* Модификатор для иконок в карточках тарифов */
+.icon-tariff {
+  color: $color-primary;
+  vertical-align: middle; /* Выравниваем по центру строки */
+  margin-right: $spacing-xs;
+}
+
+/* Модификатор для иконки рубля */
+.icon-ruble {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+/* --- Навигационное меню (мобильное по умолчанию) --- */
+.header__menu-wrapper {
+  background-color: $color-black;
+  padding: $spacing-s;
+}
+
+.header__nav-list {
+  display: none; // Скрыто по умолчанию
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: $color-black;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  &.active {
+    display: flex; // Показывается по клику на бургер
+  }
+}
+
+.header__nav-item {
+  margin: $spacing-s 0;
+  width: 100%;
+  text-align: center;
+}
+
+.header__nav-link {
+  color: $color-white;
+  text-decoration: none;
+  padding: 0.1rem 0.3rem;
+  display: block;
+}
+
+.header__submenu {
+  display: none; // Подменю тоже скрыты
+  position: static; // Встраиваются в поток на мобильных
+  box-shadow: none;
+  background-color: #222;
+  list-style: none;
+  padding: $spacing-s;
+  margin-top: $spacing-s;
+
+  li {
+    margin: $spacing-xs 0;
+  }
+
+  a {
+    color: $color-white;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+}
+
+.dropdown-icon::after {
+  content: '▾';
+  display: inline-block;
+  margin-left: $spacing-xs;
+  font-size: 0.8em;
+}
+
+/* Бургер-меню (видно только на мобильных) */
+.burger-menu {
+  display: block;
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  cursor: pointer;
+  z-index: 1001;
+
+  span {
+    display: block;
+    width: 2.5rem;
+    height: 0.3rem;
+    background-color: $color-white;
+    margin: $spacing-xs 0;
+    transition: all $transition-speed ease;
+  }
+}
+
+.header__overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+/* --- Стили для планшетов и десктопов (769px и больше) --- */
+@media (min-width: 769px) {
+  .top-bar {
+    display: flex; // Показываем верхнюю полосу
+    justify-content: space-between;
+    align-items: center;
+    background-color: $color-background;
+    padding: $spacing-s;
+    font-size: 1.4rem;
+
+    // Стили для ссылок внутри top-bar, предполагая, что у вас есть классы .left-links и .right-links
+    .left-links a,
+    .left-links span {
+      color: $color-text-main;
+      text-decoration: none;
+      margin-right: $spacing-m;
+    }
+
+    .right-links a {
+      color: $color-text-main;
+      text-decoration: none;
+    }
+  }
+
+  .header__container {
+    flex-wrap: nowrap; // Запрещаем перенос
+  }
+
+  .header__logo {
+    order: 0; // Сбрасываем порядок
+  }
+  
+  .header__logo-img {
+    width: 6.4rem;
+    height: 6.4rem;
+  }
+
+  .header__contact {
+    order: 0;
+  }
+
+  .header__search {
+    order: 0;
+    width: clamp(24rem, 35vw, 36rem); // Возвращаем адаптивную ширину
+  }
+
+  .burger-menu {
+    display: none; // Скрываем бургер
+  }
+
+  .header__nav-list {
+    display: flex; // Показываем меню
+    position: static; // Возвращаем в поток
+    flex-direction: row; // Элементы в ряд
+    width: auto;
+  }
+
+  .header__nav-item {
+    margin: 0 $spacing-s;
+    width: auto;
+  }
+
+  .header__submenu {
+    display: none; // Снова скрываем, чтобы показать по :hover
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: $color-black;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    margin-top: 0;
+  }
+
+  .header__nav-item--submenu:hover .header__submenu {
+    display: block; // Показ подменю при наведении
+  }
+}
+
+
+/* ==========================================================================
+   3. ОСНОВНОЙ КОНТЕНТ (MAIN) - MOBILE FIRST
+   ========================================================================== */
+
+.page-path {
+  padding: $spacing-s;
+  color: $color-text-light;
+  font-size: 1rem;
+  font-weight: bolder;
+  
+  a {
+    text-decoration: none;
+    color: $color-primary;
+  }
+}
+
+.main-title {
+  text-align: center;
+  font-size: 2.4rem; // Меньше на мобильных
+  margin: $spacing-l 0;
+}
+
+.selection-container {
+  display: flex;
+  flex-direction: column; // Вертикально на мобильных
+  align-items: center; // Центрируем
+  gap: $spacing-m;
+  margin: $spacing-l 0;
+}
+
+.selection-box {
+  width: 80%; // Шире на мобильных
+  max-width: 25rem;
+  background-color: $color-white;
+  padding: $spacing-xs;
+  border: 1px solid #ccc;
+  border-radius: $border-radius-small;
+  position: relative;
+
+  label {
+    display: block;
+    margin-bottom: $spacing-xs;
+    color: $color-text-light;
+    font-size: 1.2rem;
+  }
+
+  select {
+    padding: $spacing-xs;
+    font-size: 1.4rem;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+  }
+
+  &::after {
+    content: '▼';
+    position: absolute;
+    top: 50%;
+    right: $spacing-s;
+    transform: translateY(-50%);
+    color: $color-text-main;
+    font-size: 1.2rem;
+    pointer-events: none;
+  }
+}
+
+/* --- Стили для планшетов и десктопов (769px и больше) --- */
+@media (min-width: 769px) {
+  .main-title {
+    font-size: 3rem; // Возвращаем размер для десктопов
+  }
+  
+  .selection-container {
+    flex-direction: row; // В ряд на десктопах
+    justify-content: center;
+    gap: $spacing-l;
+  }
+
+  .selection-box {
+    width: 16.5rem; // Фиксированная ширина на десктопах
+  }
+}
+
+
+/* ==========================================================================
+   4. СЛАЙДЕР ТАРИФОВ (SWIPER) - MOBILE FIRST
+   ========================================================================== */
+
+.tariffs-block {
+  position: relative;
+  // Убираем боковые отступы на мобильных, чтобы слайдер был от края до края
+  padding: 0; 
+}
+
+#tariff-slider {
+  padding: 2rem 1rem 3rem 1rem;
+  overflow: hidden;
+}
+
+#tariff-slider .swiper-slide {
+  width: auto;
+  height: auto;
+  display: flex;
+}
+
+.tariff-card {
+  background-color: $color-white;
+  border: 1px solid $color-border;
+  border-radius: $border-radius-main;
+  text-align: center;
+  width: 25rem;
+  padding: $spacing-s;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: box-shadow $transition-speed ease, border-color $transition-speed ease;
+
+  &:hover {
+    z-index: 10;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  }
+
+  &--hit {
+    border: 3px solid $color-hit;
+    position: relative;
+  }
+}
+
+.badge-hit {
+  position: absolute;
+  top: -1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: $color-hit;
+  color: $color-white;
+  font-weight: bold;
+  font-size: 1.2rem;
+  padding: $spacing-xs $spacing-s;
+  border-radius: $border-radius-small;
+  text-transform: uppercase;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+}
+
+.tariff-card__content {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+  flex-grow: 1;
+}
+
+.tariff-card__title {
+  font-weight: bold;
+  font-size: 2.2rem;
+  margin: $spacing-s 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
+  height: calc(1.2em * 2);
+}
+
+.tariff-card__desc {
+  font-size: 1.4rem;
+  line-height: 1.4;
+  min-height: calc(1.4em * 5);
+}
+
+.line {
+  display: block;
+  margin: 0.6rem 0;
+
+  &--price {
+    color: $color-accent-red;
+    font-size: 2rem;
+    font-weight: bold;
+  }
+
+  &--equipment-title {
+    opacity: .7;
+    color: $color-text-light;
+    margin-top: $spacing-s;
+  }
+}
+
+.connect-btn {
+  display: block;
+  width: 70%;
+  margin: $spacing-l auto 0;
+  padding: $spacing-s;
+  background: $color-primary;
+  color: $color-white;
+  border: none;
+  border-radius: $border-radius-main;
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: auto;
+  transition: background-color $transition-speed ease, transform 0.1s ease;
+
+  &:hover {
+    background: $color-primary-dark;
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+/* Кнопки навигации слайдера */
+#tariff-slider .swiper-button-prev,
+#tariff-slider .swiper-button-next {
+  display: none; // Скрываем на мобильных
+}
+
+/* --- Стили для планшетов и десктопов (769px и больше) --- */
+@media (min-width: 769px) {
+  .tariffs-block {
+    padding: 0 $spacing-l; // Возвращаем отступы на десктопе
+  }
+
+  #tariff-slider .swiper-button-prev,
+  #tariff-slider .swiper-button-next {
+    display: flex; // Показываем кнопки навигации
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 4.4rem;
+    height: 4.4rem;
+    background-color: $color-white;
+    border: 1px solid #eee;
+    border-radius: 50%;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    color: $color-text-main;
+    font-size: 2.4rem;
+    font-weight: bold;
+    transition: background-color 0.2s, border-color 0.2s;
+
+    &:hover {
+      background-color: #f0f0f0;
+    }
+  }
+
+  #tariff-slider .swiper-button-prev { left: -1rem; }
+  #tariff-slider .swiper-button-next { right: -1rem; }
+
+  #tariff-slider .swiper-button-disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+  }
+
+  #tariff-slider .swiper-button-next::after,
+  #tariff-slider .swiper-button-prev::after {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   7. ВСПЛЫВАЮЩИЕ ОКНА (POPUP)
+   ========================================================================== */
+
+.popup {
+  display: none; /* По умолчанию скрыто */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Оверлей */
+  z-index: 2000;
+  
+  /* Центрирование содержимого */
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-m;
+}
+
+/* Показываем окно, добавляя класс .show */
+.popup.show {
+  display: flex;
+}
+
+.popup-content {
+  max-width: 45rem;
+  width: 100%;
+  background: $color-white;
+  padding: $spacing-l;
+  border-radius: 8px;
+  position: relative;
+}
+
+.popup-close {
+  position: absolute;
+  top: var(--spacing-s);
+  right: $spacing-s;
+  cursor: pointer;
+  font-size: 2.4rem;
+  line-height: 1;
+  color: #aaa;
+  border: none;
+  background: none;
+}
+.popup-close:hover {
+  color: $color-text-main;
+}
+
+/* Форма в попапе */
+.connection-form {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-m;
+  text-align: center;
+}
+
+.form-title {
+  font-weight: bold;
+  font-size: 2.4rem;
+  margin: 0;
+}
+
+.form-subtitle {
+  color: $color-primary;
+  font-size: 1.6rem;
+  margin: -0.5rem 0 $spacing-s 0;
+}
+
+.form-group {
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: $spacing-xs;
+  font-size: 1.4rem;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: $spacing-s;
+  border: 1px solid #ccc;
+  border-radius: $border-radius-small;
+  font-size: 1.6rem;
+}
+
+.form-row {
+  display: flex;
+  gap: $spacing-m;
+}
+.form-row > .form-group {
+  flex: 1; /* Поля в ряду занимают равное пространство */
+}
+
+.form-submit-btn {
+  background-color: $color-primary;
+  color: $color-white;
+  border: none;
+  padding: 1.2rem 2rem;
+  border-radius: $border-radius-small;
+  font-size: 1.8rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color $transition-speed ease;
+  margin-top: $spacing-s;
+}
+.form-submit-btn:hover {
+  background-color: $color-primary-dark;
+}
+
+
+/* ==========================================================================
+   X. БЛОК ПРОВЕРКИ СКОРОСТИ (ОБНОВЛЕННЫЙ)
+   ========================================================================== */
+
+.speed-check-container {
+    display: flex;
+    flex-wrap: wrap; /* Разрешаем перенос на новую строку на маленьких экранах */
+    justify-content: center; /* Центрируем содержимое по горизонтали */
+    align-items: center; /* Центрируем содержимое по вертикали */
+    gap: 1.2rem; /* Расстояние между элементами */
+    
+    /* Эти свойства центрируют сам блок на странице */
+    max-width: 90rem;
+    margin: $spacing-l auto;
+    padding: $spacing-l;
+    
+    /* Для красоты можно добавить фон и рамку */
+    background-color: $color-white;
+    border-radius: $border-radius-main;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.speed-check-text {
+    font-size: 1.8rem;
+    font-weight: 500;
+    line-height: 1.4;
+    
+    /* ИЗМЕНЕНИЕ: Основной текст теперь по умолчанию синий */
+    color: $color-primary;
+}
+
+/* Этот класс больше не нужен для синего цвета, но оставим его для гибкости */
+.speed-check-text__blue {
+    color: $color-primary;
+}
+
+/* Этот класс нужен для выделения части текста красным */
+.speed-check-text__red {
+    color: $color-accent-red;
+    font-weight: bold;
+}
+
+.speed-check-btn {
+    /* ИЗМЕНЕНИЕ: Фон стал красным, а текст белым */
+    background-color: $color-accent-red;
+    color: $color-white;
+    
+    border: none;
+    padding: 1rem 1.6rem;
+    border-radius: $border-radius-small;
+    font-size: 1.6rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color $transition-speed ease, transform 0.1s ease;
+}
+
+.speed-check-btn:hover {
+    /* ИЗМЕНЕНИЕ: Сделаем фон чуть темнее при наведении */
+    background-color: darken($color-accent-red, 8%);
+}
+
+.speed-check-btn:active {
+    transform: translateY(1px);
+}
+
+
+/* ==========================================================================
+   5. СЛАЙДЕР ПАРТНЕРОВ (БЕСКОНЕЧНАЯ ПРОКРУТКА)
+   ========================================================================== */
+
+.partners-slider-wrapper {
+  background-color: $color-white;
+  padding: $spacing-xl 0;
+  overflow: hidden;
+}
+
+/* Применяем анимацию к обертке слайдов Swiper */
+#partners-slider .swiper-wrapper {
+  /* Название анимации, продолжительность, линейная скорость, бесконечность */
+  animation: marquee 30s linear infinite;
+}
+
+/* При наведении на слайдер - ставим анимацию на паузу */
+#partners-slider:hover .swiper-wrapper {
+  animation-play-state: paused;
+}
+
+#partners-slider .swiper-slide {
+  height: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#partners-slider .swiper-slide img {
+  max-height: 6rem;
+  max-width: 15rem;
+  object-fit: contain; /* Сохраняет пропорции изображения */
+  transition: transform $transition-speed ease;
+}
+
+#partners-slider .swiper-slide a:hover img {
+  transform: scale(1.05);
+}
+
+/* Определение самой анимации */
+@keyframes marquee {
+  /* В начале анимации сдвига нет */
+  from {
+    transform: translateX(0%);
+  }
+  /* В конце анимации сдвигаем ленту влево на 50% ее длины (т.к. контент продублирован) */
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ==========================================================================
+   6. ПОДВАЛ (FOOTER) - MOBILE FIRST
+   ========================================================================== */
+
+.footer {
+  background-color: $color-black;
+  color: $color-white;
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column; // Вертикально на мобильных
+  gap: 3rem;
+}
+
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.logo {
+  font-size: 2.4rem;
+  font-weight: bold;
+  margin-bottom: $spacing-l;
+  color: $color-white;
+}
+
+.social-icons {
+  display: flex;
+  gap: $spacing-m;
+}
+
+.social-icon-wrapper {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  background-color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color $transition-speed ease;
+  
+  &:hover {
+    background-color: #444;
+  }
+}
+
+.social-icon {
+  width: 2rem;
+  height: 2rem;
+  fill: $color-white;
+}
+
+.footer-right {
+  display: flex;
+  flex-direction: column; // Колонки меню тоже вертикально
+  gap: 3rem;
+}
+
+.footer-column {
+  h4 {
+    font-size: 1.6rem;
+    margin-bottom: 1.2rem;
+    font-weight: bold;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    margin-bottom: $spacing-xs;
+  }
+
+  a {
+    text-decoration: none;
+    color: #aaa;
+    font-size: 1.4rem;
+    transition: color $transition-speed ease;
+    
+    &:hover {
+      color: $color-white;
+    }
+  }
+}
+
+/* --- Стили для планшетов и десктопов (769px и больше) --- */
+@media (min-width: 769px) {
+  .footer {
+    flex-direction: row; // Возвращаем горизонтальное расположение
+    justify-content: space-between;
+    padding: $spacing-xl 6rem;
+    gap: $spacing-xl;
+  }
+
+  .footer-right {
+    flex-direction: row; // Колонки меню в ряд
+    gap: 6rem;
+  }
+}
